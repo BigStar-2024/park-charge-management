@@ -1,6 +1,8 @@
 import React from "react";
 import CustomizeInputText from "../components/CustomizeInputText";
+import CustomizeInputText2 from "../components/CustomizeInputText2";
 import BasicButtons from "../components/Button";
+import SelectIndicator from "../components/SelectState";
 
 const Home = () => {
   return (
@@ -73,31 +75,45 @@ const Home = () => {
             </div>
             <div className="border-x border-[#FA551D] w-full h-auto px-4">
               <div className="text-[#ffffff] text-lg font-medium px-4 py-2 bg-[#091C62] rounded-t-[10px] tracking-tight">
-                Find Your Parking Charge Notice, enter it here:
+                To see all open Parking Charge Notices for your vehicle, enter
+                your license plate number and state here:
               </div>
               <div className="flex flex-col border border-[#091C62] w-full h-auto pr-40 rounded-b-[10px]">
                 <div className="flex justify-end">
-                  <div className="flex mt-8">
-                    <p className="text-base tracking-tighter mt-1 mr-6 font-medium">
-                      Parking Charge Notice Number
-                    </p>
-                    <div className="flex flex-col ">
+                  <div className="flex flex-col mt-8">
+                    <div className="flex">
+                      <p className="text-base tracking-tighter mt-1 mr-6 font-medium">
+                        License Plate
+                      </p>
                       <div className="mb-4">
-                        <CustomizeInputText
+                        <CustomizeInputText2
                           width="240px"
-                          placeholder="Charge Notice Number"
+                          placeholder="License Plate"
                         />
                       </div>
-                      <div className="mb-6">
-                        <BasicButtons
-                          text="Search"
-                          width="auto"
-                          paddingX="20px"
-                          paddingY="6px"
-                          bgColor="#FA551D"
-                          hoverColor="#FFAD92"
-                          fontSize="14px"
-                        />
+                    </div>
+                    <div className="flex justify-end">
+                      <p className="text-base tracking-tighter mt-1 mr-6 font-medium">
+                        Select State
+                      </p>
+                      <div className="flex flex-col ">
+                        <div className="mb-4">
+                          <SelectIndicator
+                            width="240px"
+                            placeholder="Select State"
+                          />
+                        </div>
+                        <div className="mb-6">
+                          <BasicButtons
+                            text="Search"
+                            width="auto"
+                            paddingX="20px"
+                            paddingY="6px"
+                            bgColor="#FA551D"
+                            hoverColor="#FFAD92"
+                            fontSize="14px"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -105,20 +121,20 @@ const Home = () => {
               </div>
             </div>
             <div className="border-x border-[#FA551D] w-full h-auto p-4">
-              <div className="text-[#ffffff] text-lg font-medium px-4 py-2 bg-[#091C62] rounded-t-[10px] tracking-tight">
-                Find Your Parking Charge Notice, enter it here:
+              <div className="text-[#ffffff] text-lg font-medium px-4 py-2 bg-[#091C62] rounded-t-[10px] tracking-tighter">
+                To see all open Parking Charge Notices for your vehicle, enter your VIN number here:
               </div>
               <div className="flex flex-col border border-[#091C62] w-full h-auto pr-40 rounded-b-[10px]">
                 <div className="flex justify-end">
                   <div className="flex mt-8">
                     <p className="text-base tracking-tighter mt-1 mr-6 font-medium">
-                      Parking Charge Notice Number
+                      VIN
                     </p>
                     <div className="flex flex-col ">
                       <div className="mb-4">
-                        <CustomizeInputText
+                        <CustomizeInputText2
                           width="240px"
-                          placeholder="Charge Notice Number"
+                          placeholder="License Plate"
                         />
                       </div>
                       <div className="mb-6">
@@ -155,7 +171,6 @@ const Home = () => {
               </a>
             </div>
           </div>
-          
         </div>
       </div>
     </>
