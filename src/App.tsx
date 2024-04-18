@@ -6,7 +6,6 @@ import ParkingChargeNoticeResult from './pages/ChargeNoticeResult';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/ContactUs';
-import SetViolationPay from './pages/SetViolationPay';
 
 function App() {
   return (
