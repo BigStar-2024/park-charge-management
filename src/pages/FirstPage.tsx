@@ -10,7 +10,7 @@ const First = () => {
         <div className="w-screen h-screen bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-indigo-500 to-90% opacity-20"></div>
       </div>
       <div className="-translate-x-2/4 -translate-y-1/2 absolute inset-y-1/2 inset-x-1/2 w-[450px] max-w-[450px] h-[560px] bg-white rounded-[5px]">
-        <a href="https://imgbb.com/" className="absolute top-[20px] left-[20px]">
+        <a href="/" className="absolute top-[20px] left-[20px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"
             alt="logo"
@@ -48,7 +48,7 @@ const First = () => {
                 <StateTextFields width="100px" label="State" />
               </div>
             </div>
-            <div className="w-316px justify-center">
+            <a className="w-316px justify-center" href="/result">
               <BasicButtons
                 text="Continue"
                 width="320px"
@@ -58,7 +58,7 @@ const First = () => {
                 hoverColor="#FFAD92"
                 fontSize="20px"
               />
-            </div>
+            </a>
           </div>
         </div>
         <div className="flex flex-col items-center my-4">
