@@ -30,3 +30,4 @@ export default function StateTextFields({width, label} : StateTextFieldsProps) {
     </Box>
   );
 }
+

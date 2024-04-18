@@ -1,5 +1,5 @@
 import React from "react";
-import BasicButtons from "./button";
+import BasicButtons from "./Button";
 
 const Notice = () => {
   return (

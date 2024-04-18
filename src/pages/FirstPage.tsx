@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
-import StateTextFields from "../components/inputText";
-import BasicButtons from "../components/button";
+import StateTextFields from "../components/InputText";
+import BasicButtons from "../components/Button";
 
 const First = () => {
   return (
