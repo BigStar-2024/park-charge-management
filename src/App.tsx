@@ -5,7 +5,7 @@ import First from './pages/FirstPage';
 import ParkingChargeNoticeResult from './pages/ChargeNoticeResult';
 import Home from './pages/Home';
 import About from './pages/About';
-import Contact from './pages/ContactUS';
+import Contact from './pages/ContactUs';
 
 function App() {
   return (
