@@ -1,13 +1,13 @@
-import React from "react";
-import CustomizeInputText from "../components/CustomizeInputText";
-import CustomizeInputText2 from "../components/CustomizeInputText2";
+import React, { useState } from "react";
+import Step2 from "./Step2";
 import BasicButtons from "../components/Button";
-import SelectIndicator from "../components/SelectState";
 
-const About = () => {
+const SetViolationPay = () => {
+  const [active, setActive] = useState<boolean>(false);
+   
   return (
     <>
-      <div className=" w-screen h-auto bg-[#EFF3FF]">
+      <div className=" w-screen h-screen bg-[#EFF3FF]">
         <a href="/" className="absolute top-[10px] left-[40px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"
@@ -17,36 +17,32 @@ const About = () => {
         </a>
         <div className="flex overflow-hidden bg-[#FFF5F3] h-[100px] justify-center items-center text-[#091C62] border-b-2 border-[#FA551D]">
           <a
-            className="active text-center py-8 px-6 text-2xl hover:bg-[#FFAD92] hover:text-white hover:duration-300"
+            className="active text-center py-8 px-6 text-2xl hover:bg-[#FA551D] hover:text-white hover:duration-300"
             href="/home"
           >
             Home
           </a>
           <a
-            className="active text-center py-8 px-6 text-2xl bg-[#FA551D] text-white"
+            className="active text-center py-8 px-6 text-2xl hover:bg-[#FA551D] hover:text-white hover:duration-300"
             href="/about"
           >
             About
           </a>
           <a
-            className="active text-center py-8 px-6 text-2xl hover:bg-[#FFAD92] hover:text-white hover:duration-300"
+            className="active text-center py-8 px-6 text-2xl hover:bg-[#FA551D] hover:text-white hover:duration-300"
             href="/contact"
           >
             Contact
           </a>
         </div>
+        
         <div className="flex justify-center py-20">
           <div className="flex flex-col h-auto w-[720px] max-w-[720px] bg-white rounded-[10px]">
             <div className="bg-[#FA551D] w-full py-3 px-5 text-white text-2xl rounded-t-[10px] font-medium">
-              Find Your Parking Charge Notice
+              Step2: Payment Details
             </div>
-            <div className="border-x border-[#FA551D] w-full h-auto p-4">
-              <p className="text-base tracking-tight p-1 ">
-                rmcpay.com is a Parking Charge Notice payment center used by
-                municipalities, universities, and private parking operators to
-                provide a convenient way to pay Parking Charge Notices online.
-              </p>
-              <p className="text-base tracking-tight p-1 ">Inquiries related to Parking Charge Notices should be directed to the issuing party</p>
+            <div className="border-x border-[#FA551D] w-full h-auto">
+             <Step2 active={active} setActive={setActive} />
             </div>
             <div className="flex bg-[#FA551D] w-full h-auto rounded-b-[10px] items-center">
               <div className="  py-3 pl-5 text-white text-lg  font-medium">
@@ -72,4 +68,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default SetViolationPay;

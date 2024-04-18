@@ -1,7 +1,12 @@
 import React from "react"; 
 import Notice from "../components/Notice";
 
-const Step1 = () => {
+interface props {
+  active: boolean;
+  setActive: (_: boolean) => void;
+}
+
+const Step1 = ({active, setActive}: props) => {
   return (
     <>
       <div className="py-4 px-4">
@@ -16,13 +21,14 @@ const Step1 = () => {
           entered. Please verify the Parking Charge Notices you would like to
           pay and select options
         </p>
-        <p className="mt-4 mx-1 mb-2">Parking Charge Notice(s)</p>
+        <p className="mt-4 mx-1 mb-2 text-base">Parking Charge Notice(s)</p>
         <div className="px-1">
-            <Notice />
+            <Notice active={active} setActive={setActive}/>
         </div>
       </div>
     </>
   );
 };
+
 
 export default Step1;

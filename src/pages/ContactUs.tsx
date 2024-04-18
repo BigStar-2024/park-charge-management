@@ -13,13 +13,13 @@ const Contact = () => {
         </a>
         <div className="flex overflow-hidden bg-[#FFF5F3] h-[100px] justify-center items-center text-[#091C62] border-b-2 border-[#FA551D]">
           <a
-            className="active text-center py-8 px-6 text-2xl hover:bg-[#FA551D] hover:text-white hover:duration-300"
+            className="active text-center py-8 px-6 text-2xl hover:bg-[#FFAD92] hover:text-white hover:duration-300"
             href="/home"
           >
             Home
           </a>
           <a
-            className="active text-center py-8 px-6 text-2xl hover:bg-[#FA551D] hover:text-white hover:duration-300"
+            className="active text-center py-8 px-6 text-2xl hover:bg-[#FFAD92] hover:text-white hover:duration-300"
             href="/about"
           >
             About
@@ -38,11 +38,20 @@ const Contact = () => {
             </div>
             <div className="border-x border-[#FA551D] w-full h-auto p-4">
               <p className="text-base tracking-tight p-1 ">
-                rmcpay.com is a Parking Charge Notice payment center used by
-                municipalities, universities, and private parking operators to
-                provide a convenient way to pay Parking Charge Notices online.
+                We are here to answer any questions or concerns you may have
+                about the payment of your Parking Charge Notice. If you have any
+                inquiries about a Parking Charge Notice that don't involve the
+                payment process then please contact the issuing party.
               </p>
-              <p className="text-base tracking-tight p-1 ">Inquiries related to Parking Charge Notices should be directed to the issuing party</p>
+              <p className="text-base tracking-tight p-1 ">
+                Email: info@professionalparkingmgt.com
+              </p>
+              <p className="text-base tracking-tight p-1 ">
+                Phone: 1-844-999-7275
+              </p>
+              <p className="text-base tracking-tight p-1 ">
+                If you are experienceing technical difficulties with this website then please click here to report a problem.
+              </p>
             </div>
             <div className="flex bg-[#FA551D] w-full h-auto rounded-b-[10px] items-center">
               <div className="  py-3 pl-5 text-white text-lg  font-medium">

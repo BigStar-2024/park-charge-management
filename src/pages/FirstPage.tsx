@@ -9,7 +9,7 @@ const First = () => {
       <div className="firstPage w-screen h-screen ">
         <div className="w-screen h-screen bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-indigo-500 to-90% opacity-20"></div>
       </div>
-      <div className="-translate-x-2/4 -translate-y-1/2 absolute inset-y-1/2 inset-x-1/2 w-[450px] max-w-[450px] h-[560px] bg-white rounded-[5px]">
+      <div className="-translate-x-2/4 -translate-y-1/2 absolute inset-y-1/2 inset-x-1/2 w-[450px] max-w-[450px] h-fit bg-white rounded-[5px]">
         <a href="/" className="absolute top-[20px] left-[20px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"
@@ -26,19 +26,19 @@ const First = () => {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <div className="text-[#FA551D] text-xl font-bold font-sans tracking-tighter mb-6">
+          <div className="text-[#091C62] text-xl font-bold font-sans tracking-tighter mb-6">
             Manage your parking charge notice
           </div>
-          <div className="border border-[#FA551D] flex flex-col items-center w-[360px] h-[300px] rounded-[10px]">
+          <div className="border border-[#FA551D] flex flex-col items-center w-[360px] h-fit rounded-[10px]">
             <div className="mt-5 mb-4">
               <StateTextFields width="316px" label="Parking Charge Number" />
             </div>
             <div className="flex items-center">
-              <hr className="w-[100px] h-1 bg-[#FA551D] opacity-30" />
+              <hr className="w-[100px] h-auto border-[#FA551D] opacity-100" />
               <div className="mx-4 text-[#FA551D] italic text-xl font-medium font-sans tracking-tighter">
                 OR
               </div>
-              <hr className="w-[100px] h-1 bg-[#FA551D] opacity-30" />
+              <hr className="w-[100px] h-auto border-[#FA551D] opacity-100" />
             </div>
             <div className="flex">
               <div className="my-4 mx-2">
@@ -48,12 +48,12 @@ const First = () => {
                 <StateTextFields width="100px" label="State" />
               </div>
             </div>
-            <a className="w-316px justify-center" href="/result">
+            <a className="w-316px justify-center mb-4" href="/result">
               <BasicButtons
                 text="Continue"
-                width="320px"
+                width="316px"
                 paddingX="50px"
-                paddingY="16px"
+                paddingY="12px"
                 bgColor="#FA551D"
                 hoverColor="#FFAD92"
                 fontSize="20px"
