@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import First from './pages/FirstPage';
 import ParkingChargeNoticeResult from './pages/ChargeNoticeResult';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
           <Routes>
             <Route path="/" element={<First />} />
             <Route path="/result" element={<ParkingChargeNoticeResult />} />
-            {/* <Route path="/completion" element={<Completion stripePromise={stripePromise} />} /> */}
+            <Route path="/home" element={<Home />} />
           </Routes>
         </BrowserRouter>
     </div>
