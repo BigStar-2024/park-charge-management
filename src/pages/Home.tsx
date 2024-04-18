@@ -7,7 +7,7 @@ import SelectIndicator from "../components/SelectState";
 const Home = () => {
   return (
     <>
-      <div className=" w-screen h-screen bg-[#EFF3FF]">
+      <div className=" w-screen h-auto bg-[#EFF3FF]">
         <a href="/" className="absolute top-[10px] left-[40px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"
@@ -35,7 +35,7 @@ const Home = () => {
             Contact
           </a>
         </div>
-        <div className="flex justify-center mt-20">
+        <div className="flex justify-center py-20">
           <div className="flex flex-col h-auto w-[720px] max-w-[720px] bg-white rounded-[10px]">
             <div className="bg-[#FA551D] w-full py-3 px-5 text-white text-2xl rounded-t-[10px] font-medium">
               Find Your Parking Charge Notice

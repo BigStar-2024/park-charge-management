@@ -4,6 +4,8 @@ import './App.css';
 import First from './pages/FirstPage';
 import ParkingChargeNoticeResult from './pages/ChargeNoticeResult';
 import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/ContactUS';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
             <Route path="/" element={<First />} />
             <Route path="/result" element={<ParkingChargeNoticeResult />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </BrowserRouter>
     </div>

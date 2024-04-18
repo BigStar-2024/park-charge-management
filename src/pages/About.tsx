@@ -1,10 +1,13 @@
-import React from "react"; 
-import Step1 from "./Step1";
+import React from "react";
+import CustomizeInputText from "../components/CustomizeInputText";
+import CustomizeInputText2 from "../components/CustomizeInputText2";
+import BasicButtons from "../components/Button";
+import SelectIndicator from "../components/SelectState";
 
-const ParkingChargeNoticeResult = () => {
+const About = () => {
   return (
     <>
-      <div className=" w-screen h-screen bg-[#EFF3FF]">
+      <div className=" w-screen h-auto bg-[#EFF3FF]">
         <a href="/" className="absolute top-[10px] left-[40px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"
@@ -20,7 +23,7 @@ const ParkingChargeNoticeResult = () => {
             Home
           </a>
           <a
-            className="active text-center py-8 px-6 text-2xl hover:bg-[#FA551D] hover:text-white hover:duration-300"
+            className="active text-center py-8 px-6 text-2xl bg-[#FA551D] text-white"
             href="/about"
           >
             About
@@ -35,10 +38,15 @@ const ParkingChargeNoticeResult = () => {
         <div className="flex justify-center py-20">
           <div className="flex flex-col h-auto w-[720px] max-w-[720px] bg-white rounded-[10px]">
             <div className="bg-[#FA551D] w-full py-3 px-5 text-white text-2xl rounded-t-[10px] font-medium">
-              Parking Charge Notice Results
+              Find Your Parking Charge Notice
             </div>
-            <div className="border-x border-[#FA551D] w-full h-auto">
-              <Step1 />
+            <div className="border-x border-[#FA551D] w-full h-auto p-4">
+              <p className="text-base tracking-tight p-1 ">
+                rmcpay.com is a Parking Charge Notice payment center used by
+                municipalities, universities, and private parking operators to
+                provide a convenient way to pay Parking Charge Notices online.
+              </p>
+              <p className="text-base tracking-tight p-1 ">Inquiries related to Parking Charge Notices should be directed to the issuing party</p>
             </div>
             <div className="flex bg-[#FA551D] w-full h-auto rounded-b-[10px] items-center">
               <div className="  py-3 pl-5 text-white text-lg  font-medium">
@@ -64,4 +72,4 @@ const ParkingChargeNoticeResult = () => {
   );
 };
 
-export default ParkingChargeNoticeResult;
+export default About;
