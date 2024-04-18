@@ -134,7 +134,7 @@ const Home = () => {
                       <div className="mb-4">
                         <CustomizeInputText2
                           width="240px"
-                          placeholder="License Plate"
+                          placeholder="VIN Number"
                         />
                       </div>
                       <div className="mb-6">
