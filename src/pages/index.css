@@ -1,0 +1,15 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.firstPage {
+    background-image: url("https://i.ibb.co/7bDvPxk/parking-lot.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+    /* Add the blur effect */
+    /* filter: blur(3px);
+    -webkit-filter: blur(3px);  */
+}
+
