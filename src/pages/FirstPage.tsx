@@ -10,15 +10,15 @@ const First = () => {
         <div className="w-screen h-screen bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-indigo-500 to-90% opacity-20"></div>
       </div>
       <div className="-translate-x-2/4 -translate-y-1/2 absolute inset-y-1/2 inset-x-1/2 w-[450px] max-w-[450px] h-[560px] bg-white rounded-[5px]">
+        <a href="https://imgbb.com/" className="absolute top-[20px] left-[20px]">
+          <img
+            src="https://i.ibb.co/HBQk2wd/logo.png"
+            alt="logo"
+            className="h-[60px] w-auto"
+          ></img>
+        </a>
         <div className="flex justify-center items-center mt-10 mb-6">
-          <a href="https://imgbb.com/">
-            <img
-              src="https://i.ibb.co/HBQk2wd/logo.png"
-              alt="logo"
-              className="h-[60px] w-auto"
-            ></img>
-          </a>
-          <div className="flex flex-col ml-3">
+          <div className="flex flex-col ml-3 text-center">
             <p className="text-[#415467] text-2xl font-bold">PROFESSIONAL</p>
             <p className="text-base text-[#117fb3] font-medium">
               Parking Management
@@ -31,7 +31,7 @@ const First = () => {
           </div>
           <div className="border border-[#FA551D] flex flex-col items-center w-[360px] h-[300px] rounded-[10px]">
             <div className="mt-5 mb-4">
-              <StateTextFields width="316px" label="Parking Charge Number"/>
+              <StateTextFields width="316px" label="Parking Charge Number" />
             </div>
             <div className="flex items-center">
               <hr className="w-[100px] h-1 bg-[#FA551D] opacity-30" />
@@ -42,24 +42,42 @@ const First = () => {
             </div>
             <div className="flex">
               <div className="my-4 mx-2">
-                <StateTextFields width="200px" label="Plate Number"/>
+                <StateTextFields width="200px" label="Plate Number" />
               </div>
               <div className="my-4 mx-2">
-                <StateTextFields width="100px" label="State"/>
+                <StateTextFields width="100px" label="State" />
               </div>
             </div>
             <div className="w-316px justify-center">
-                <BasicButtons text="Continue" width="320px" paddingX="50px" paddingY="15px" bgColor="#FA551D" hoverColor="#FFAD92" fontSize="24px"/>
+              <BasicButtons
+                text="Continue"
+                width="320px"
+                paddingX="50px"
+                paddingY="16px"
+                bgColor="#FA551D"
+                hoverColor="#FFAD92"
+                fontSize="20px"
+              />
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center my-2">
-            <p className="text-base">Etico Parking ©2024. All rights reserved</p>
-            <div className="flex">
-                <a href="https://pkg-shared-files.s3.amazonaws.com/brands/etico/docs/privacy.pdf" className="text-base text-[blue] underline hover:text-[red]">Privacy Policy</a>
-                <p className="text-base text-[grey] mx-2"> | </p>
-                <a href="https://pkg-shared-files.s3.amazonaws.com/brands/etico/docs/terms.pdf" className="text-base text-[blue] underline hover:text-[red]"> Terms of Service</a>
-            </div>
+        <div className="flex flex-col items-center my-4">
+          <p className="text-base">Etico Parking ©2024. All rights reserved</p>
+          <div className="flex">
+            <a
+              href="https://pkg-shared-files.s3.amazonaws.com/brands/etico/docs/privacy.pdf"
+              className="text-base text-[blue] underline hover:text-[red]"
+            >
+              Privacy Policy
+            </a>
+            <p className="text-base text-[grey] mx-2"> | </p>
+            <a
+              href="https://pkg-shared-files.s3.amazonaws.com/brands/etico/docs/terms.pdf"
+              className="text-base text-[blue] underline hover:text-[red]"
+            >
+              Terms of Service
+            </a>
+          </div>
         </div>
       </div>
     </>
