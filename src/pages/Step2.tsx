@@ -101,7 +101,15 @@ const Step2 = ({ active, setActive }: props) => {
                     <CustomizeInputText width="240px" placeholder="Zipcode" />
                   </div>
                 </div>
-                <div>
+                <div className="flex mt-4">
+                  <p className="text-base tracking-tighter mt-1 mr-6 font-medium">
+                  Phone Number
+                  </p>
+                  <div>
+                    <CustomizeInputText width="240px" placeholder="Phone Number" />
+                  </div>
+                </div>
+                <div className="my-4">
                   <Stripe />
                 </div>
               </div>

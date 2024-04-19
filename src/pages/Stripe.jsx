@@ -28,7 +28,7 @@ export default function Stripe() {
     theme: 'stripe',
     variables: {
       colorPrimary: '#2687e8',
-      colorBackground: '#FFFAF9',
+      colorBackground: '#FFF5F3',
       colorText: '#091C62',
     },
   };

@@ -14,7 +14,7 @@ export default function CustomizeInputText({ width, placeholder }: StateTextFiel
       placeholder={placeholder}
       size="md"
       variant="outlined"
-      style={{ width: width, borderColor: "#FA551D", color: "#FA551D", backgroundColor: "#FFF5F3"}}
+      style={{ width: width, borderColor: "#FA551D", color: "#091C62", backgroundColor: "#FFF5F3"}}
     />
   );
 }

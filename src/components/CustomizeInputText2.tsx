@@ -15,7 +15,7 @@ export default function CustomizeInputText2({ width, placeholder }: StateTextFie
       placeholder={placeholder}
       size="md"
       variant="outlined"
-      style={{ width: width, borderColor: "#FA551D", color: "#FA551D", backgroundColor: "#FFF5F3"}}
+      style={{ width: width, borderColor: "#FA551D", color: "#091C62", backgroundColor: "#FFF5F3"}}
       sx={{
         "& .MuiInput-startDecorator": {
           color: "#FFC0CB", // Set the color of the startDecorator

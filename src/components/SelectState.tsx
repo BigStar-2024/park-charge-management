@@ -13,7 +13,7 @@ export default function SelectIndicator({width, placeholder} : StateTextFieldsPr
     <Select
       placeholder={placeholder}
       indicator={<KeyboardArrowDown />}
-      style={{ width: width, borderColor: "#FA551D", color: "#FA551D", backgroundColor: "#FFF5F3"}}
+      style={{ width: width, borderColor: "#FA551D", color: "#091C62", backgroundColor: "#FFF5F3"}}
       sx={{
         [`& .${selectClasses.indicator}`]: {
           transition: '0.2s',
