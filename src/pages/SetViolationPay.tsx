@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Step2 from "./Step2";
-import BasicButtons from "../components/Button";
 
 const SetViolationPay = () => {
   const [active, setActive] = useState<boolean>(false);

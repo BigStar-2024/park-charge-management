@@ -1,8 +1,4 @@
 import React from "react";
-import CustomizeInputText from "../components/CustomizeInputText";
-import CustomizeInputText2 from "../components/CustomizeInputText2";
-import BasicButtons from "../components/Button";
-import SelectIndicator from "../components/SelectState";
 
 const About = () => {
   return (

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import BasicButtons from "./Button";
+import React from 'react';
 
 interface props {
   active: boolean;
@@ -7,14 +6,7 @@ interface props {
 }
 
 const Notice2 = ({active, setActive}: props) => {
-  const [buttonText, setButtonText] = useState("Pay")
-  const payNow = () => {
-    setActive(!active);
-    setButtonText((prevText) => {
-      return prevText === "Pay" ? "Unselect" : "Pay"
-  })
-  };
-
+  
   return (
     <>
       <div className="border border-[#FFAD92] relative p-2">
