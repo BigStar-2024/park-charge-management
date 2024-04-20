@@ -100,7 +100,9 @@ const Home = () => {
                         <div className="mb-4">
                           <SelectIndicator
                             width="240px"
+                            onChange={(e: any, value: string) => {}}
                             placeholder="Select State"
+                            
                           />
                         </div>
                         <div className="mb-6">

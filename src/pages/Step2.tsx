@@ -90,7 +90,7 @@ const Step2 = ({ active, setActive }: props) => {
                     State
                   </p>
                   <div>
-                    <SelectIndicator width="240px" placeholder="Select State" />
+                    <SelectIndicator width="240px" placeholder="Select State" onChange={(e: any, value: string) => {}}/>
                   </div>
                 </div>
                 <div className="flex mt-4">

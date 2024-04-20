@@ -3,18 +3,25 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 interface StateTextFieldsProps {
-    width: string;// Define the type of the 'width' prop as string
+    width: string;
     label: string;
+    value: string; // Add value prop
+    onChange: (value: string) => void; // Add onChange prop
 }
 
-export default function StateTextFields({width, label} : StateTextFieldsProps) {
-  const [name, setName] = React.useState('');
-
+export default function StateTextFields({ width, label, value, onChange }: StateTextFieldsProps) {
+  
   return (
     <Box
       component="form"
       sx={{
         '& > :not(style)': { m: 0, width: width},
+        '& input': { borderColor: '#ff551d' } // Set initial border color
+      }}
+      style={{ 
+        borderColor: "#FA551D",
+        color: "#091C62",
+        backgroundColor: "#FFF5F3"
       }}
       noValidate
       autoComplete="off"
@@ -22,12 +29,11 @@ export default function StateTextFields({width, label} : StateTextFieldsProps) {
       <TextField
         id="outlined-controlled"
         label={label}
-        value={name}
+        value={value}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setName(event.target.value);
+          onChange(event.target.value);
         }}
       />
     </Box>
   );
 }
-

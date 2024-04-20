@@ -44,7 +44,7 @@ const Contact = () => {
                 payment process then please contact the issuing party.
               </p>
               <p className="text-base tracking-tight p-1 ">
-                Email: info@professionalparkingmgt.com
+                Email: info@cityparkmanagement.com
               </p>
               <p className="text-base tracking-tight p-1 ">
                 Phone: 1-844-999-7275

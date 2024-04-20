@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 import StateTextFields from "../components/InputText";
 import BasicButtons from "../components/Button";
+import SelectIndicator from "../components/SelectState";
 
 const First = () => {
+  const navigate = useNavigate();
+  const [parkingChargeNumber, setParkingChargeNumber] = useState("");
+  const [plateNumber, setPlateNumber] = useState("");
+  const [state, setState] = useState("");
+  const [error, setError] = useState("");
+
+  const handleContinue = () => {
+    if (parkingChargeNumber || (plateNumber && state)) {
+      navigate("/result");
+    } else {
+      setError("Please enter the required information.");
+    }
+  };
+
   return (
     <>
       <div className="firstPage w-screen h-screen ">
@@ -31,7 +47,12 @@ const First = () => {
           </div>
           <div className="border border-[#FA551D] flex flex-col items-center w-[360px] h-fit rounded-[10px]">
             <div className="mt-5 mb-4">
-              <StateTextFields width="316px" label="Parking Charge Number" />
+              <StateTextFields
+                width="316px"
+                label="Parking Charge Number"
+                value={parkingChargeNumber}
+                onChange={(value) => setParkingChargeNumber(value)}
+              />
             </div>
             <div className="flex items-center">
               <hr className="w-[100px] h-auto border-[#FA551D] opacity-100" />
@@ -42,13 +63,28 @@ const First = () => {
             </div>
             <div className="flex">
               <div className="my-4 mx-2">
-                <StateTextFields width="200px" label="Plate Number" />
+                <StateTextFields
+                  width="200px"
+                  label="Plate Number"
+                  value={plateNumber}
+                  onChange={(value) => setPlateNumber(value)}
+                />
               </div>
               <div className="my-4 mx-2">
-                <StateTextFields width="100px" label="State" />
+                <SelectIndicator
+                  width="100px"
+                  placeholder="State"
+                  height="54px"
+                  fontSize="18px"
+                  value={state}
+                  onChange={(e:any, value: string) => { setState(value) }}
+                />
               </div>
             </div>
-            <a className="w-316px justify-center mb-4" href="/result">
+            <div
+              className="w-316px justify-center mb-4"
+              onClick={handleContinue}
+            >
               <BasicButtons
                 text="Continue"
                 width="316px"
@@ -58,7 +94,8 @@ const First = () => {
                 hoverColor="#FFAD92"
                 fontSize="20px"
               />
-            </a>
+            </div>
+            {error && <p className="text-red-500">{error}</p>}
           </div>
         </div>
         <div className="flex flex-col items-center my-4">
