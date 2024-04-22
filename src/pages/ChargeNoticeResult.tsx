@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Step1 from "./Step1";
 import BasicButtons from "../components/Button";
 
+
 const ParkingChargeNoticeResult = () => {
   const [active, setActive] = useState<boolean>(false);
-   
+
   return (
     <>
       <div className=" w-screen h-screen bg-[#EFF3FF]">

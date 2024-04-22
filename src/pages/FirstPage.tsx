@@ -13,11 +13,11 @@ const First = () => {
   const navigate = useNavigate();
   const [parkingChargeNumber, setParkingChargeNumber] = useState("");
   const [plateNumber, setPlateNumber] = useState("");
-  const [state, setState] = useState("");
+  const [stateLocation, setStateLocation] = useState("");
   const [error, setError] = useState("");
 
   const handleContinue = () => {
-    if (parkingChargeNumber || (plateNumber && state)) {
+    if (parkingChargeNumber || (plateNumber && stateLocation)) {
       navigate("/result");
     } else {
       setError("Please enter the required information.");
@@ -56,9 +56,6 @@ const First = () => {
                 label="Parking Charge Number"
                 value={parkingChargeNumber}
                 onChange={(value) => {setParkingChargeNumber(value);
-                  (() => {
-                    dispatch(licensePlateNumber(String(value)));
-                  })();
                 }}
               />
             </div>
@@ -75,7 +72,9 @@ const First = () => {
                   width="180px"
                   label="Plate Number"
                   value={plateNumber}
-                  onChange={(value) => setPlateNumber(value)}
+                  onChange={(value) => {setPlateNumber(value);
+                    dispatch(licensePlateNumber(String(value)));
+                  }}
                 />
               </div>
               <div className="my-4 mx-2">
@@ -84,8 +83,8 @@ const First = () => {
                   placeholder="State"
                   height="54px"
                   fontSize="16px"
-                  value={state}
-                  onChange={(e:any, value: string) => { setState(value) }}
+                  value={stateLocation}
+                  onChange={(e:any, value: string) => { setStateLocation(value) }}
                 />
               </div>
             </div>

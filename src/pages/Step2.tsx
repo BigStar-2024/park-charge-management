@@ -10,7 +10,6 @@ interface props {
   setActive: (_: boolean) => void;
 }
 
-
 const Step2 = ({ active, setActive }: props) => {
   return (
     <>
@@ -24,7 +23,13 @@ const Step2 = ({ active, setActive }: props) => {
         </p>
         <p className="mt-4 mx-1 mb-2 text-base">Parking Charge Notice(s)</p>
         <div className="px-1 mb-4">
-          <Notice2 active={active} setActive={setActive} />
+          <Notice2
+            active={active}
+            setActive={setActive}
+            paying_id="#53274633"
+            paying_amount="90.00"
+            issueDate="12/01/2022"
+          />
         </div>
         <div className="h-auto border border-[#091C62] flex flex-col items-end px-4 py-2 mx-1">
           <p className="text-base font-medium">Parking Charge Notice: $90.00</p>
@@ -90,7 +95,11 @@ const Step2 = ({ active, setActive }: props) => {
                     State
                   </p>
                   <div>
-                    <SelectIndicator width="240px" placeholder="Select State" onChange={(e: any, value: string) => {}}/>
+                    <SelectIndicator
+                      width="240px"
+                      placeholder="Select State"
+                      onChange={(e: any, value: string) => {}}
+                    />
                   </div>
                 </div>
                 <div className="flex mt-4">
@@ -103,10 +112,13 @@ const Step2 = ({ active, setActive }: props) => {
                 </div>
                 <div className="flex mt-4">
                   <p className="text-base tracking-tighter mt-1 mr-6 font-medium">
-                  Phone Number
+                    Phone Number
                   </p>
                   <div>
-                    <CustomizeInputText width="240px" placeholder="Phone Number" />
+                    <CustomizeInputText
+                      width="240px"
+                      placeholder="Phone Number"
+                    />
                   </div>
                 </div>
                 <div className="my-4">

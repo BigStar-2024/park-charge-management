@@ -1,23 +1,47 @@
 import React, { useState } from "react";
 import BasicButtons from "./Button";
+import { useAppSelector } from "../redux/hooks";
+import ViewDetailModal from "./ViewDetailModal";
 
 interface props {
   active: boolean;
   setActive: (_: boolean) => void;
+  paying_id: string;
+  paying_amount: string;
+  issueDate: string;
 }
 
-const Notice = ({active, setActive}: props) => {
-  const [buttonText, setButtonText] = useState("Pay")
+const Notice = ({
+  active,
+  setActive,
+  paying_id,
+  paying_amount,
+  issueDate,
+}: props) => {
+  const [buttonText, setButtonText] = useState("Pay");
+  const licensePlateNumber = useAppSelector(
+    (state) => state.pay.licensePlateNumber
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const payNow = () => {
     setActive(!active);
     setButtonText((prevText) => {
-      return prevText === "Pay" ? "Unselect" : "Pay"
-  })
+      return prevText === "Pay" ? "Unselect" : "Pay";
+    });
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <>
-      <div className="border border-[#FFAD92] relative p-2">
+      <div className="border border-[#FFAD92] relative p-2 my-1">
         <div className="absolute right-[12px] top-[12px]">
           <div className="w-316px justify-center" onClick={payNow}>
             <BasicButtons
@@ -32,14 +56,20 @@ const Notice = ({active, setActive}: props) => {
           </div>
         </div>
         <div className="flex text-base font-semibold mb-1">
-          {/* <p className="mx-2">{transactionId}</p> */}
-          {/* <p className="mx-2">{amount}</p> */}
+          <p className="mx-2">{paying_id}</p>
+          <p className="mx-2">${paying_amount}</p>
         </div>
         <p className="text-base ">FLL - Failure to Pay</p>
-        {/* <p className="text-base ">Issue Date {date}</p> */}
-        {/* <p className="text-base ">Plate {plateNumber}</p> */}
-        <div className="text-base font-medium text-[#FA551D]">
-          View More Information
+        <p className="text-base ">Issue Date {issueDate}</p>
+        <p className="text-base ">Plate {licensePlateNumber}</p>
+        <div>
+          <button
+            className="text-base font-medium text-[#FA551D]"
+            onClick={openModal}
+          >
+            View More Information
+          </button>
+          <ViewDetailModal isOpen={isModalOpen} onClose={closeModal} />
         </div>
       </div>
     </>
