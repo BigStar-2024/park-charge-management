@@ -32,12 +32,12 @@ const Notice = ({active, setActive}: props) => {
           </div>
         </div>
         <div className="flex text-base font-semibold mb-1">
-          <p className="mx-2">#53274633</p>
-          <p className="mx-2">$90.00</p>
+          {/* <p className="mx-2">{transactionId}</p> */}
+          {/* <p className="mx-2">{amount}</p> */}
         </div>
         <p className="text-base ">FLL - Failure to Pay</p>
-        <p className="text-base ">Issue Date 12/01/2022</p>
-        <p className="text-base ">Plate NTVD97</p>
+        {/* <p className="text-base ">Issue Date {date}</p> */}
+        {/* <p className="text-base ">Plate {plateNumber}</p> */}
         <div className="text-base font-medium text-[#FA551D]">
           View More Information
         </div>

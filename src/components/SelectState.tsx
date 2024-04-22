@@ -44,8 +44,7 @@ export default function SelectIndicator({
           color: "#FFC0CB",
         }
       }}
-      value={value}
-      //@ts-ignore
+      value={value} 
       onChange={onChange}
     >
       <Option value="florida">Florida</Option>

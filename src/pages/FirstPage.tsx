@@ -4,8 +4,12 @@ import "./index.css";
 import StateTextFields from "../components/InputText";
 import BasicButtons from "../components/Button";
 import SelectIndicator from "../components/SelectState";
+import { useAppDispatch } from "../redux/hooks";
+import { licensePlateNumber} from "../redux/slice/payReducer";
+
 
 const First = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [parkingChargeNumber, setParkingChargeNumber] = useState("");
   const [plateNumber, setPlateNumber] = useState("");
@@ -51,7 +55,11 @@ const First = () => {
                 width="316px"
                 label="Parking Charge Number"
                 value={parkingChargeNumber}
-                onChange={(value) => setParkingChargeNumber(value)}
+                onChange={(value) => {setParkingChargeNumber(value);
+                  (() => {
+                    dispatch(licensePlateNumber(String(value)));
+                  })();
+                }}
               />
             </div>
             <div className="flex items-center">
@@ -64,7 +72,7 @@ const First = () => {
             <div className="flex">
               <div className="my-4 mx-2">
                 <StateTextFields
-                  width="200px"
+                  width="180px"
                   label="Plate Number"
                   value={plateNumber}
                   onChange={(value) => setPlateNumber(value)}
@@ -72,10 +80,10 @@ const First = () => {
               </div>
               <div className="my-4 mx-2">
                 <SelectIndicator
-                  width="100px"
+                  width="120px"
                   placeholder="State"
                   height="54px"
-                  fontSize="18px"
+                  fontSize="16px"
                   value={state}
                   onChange={(e:any, value: string) => { setState(value) }}
                 />
