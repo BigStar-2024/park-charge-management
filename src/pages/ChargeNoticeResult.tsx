@@ -8,7 +8,7 @@ const ParkingChargeNoticeResult = () => {
 
   return (
     <>
-      <div className=" w-screen h-screen bg-[#EFF3FF]">
+      <div className="w-screen h-[1720px] bg-[#EFF3FF]">
         <a href="/" className="absolute top-[10px] left-[40px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"

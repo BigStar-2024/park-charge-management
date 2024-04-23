@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <>
-      <div className=" w-screen h-auto bg-[#EFF3FF]">
+      <div className=" w-screen h-screen bg-[#EFF3FF]">
         <a href="/" className="absolute top-[10px] left-[40px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"

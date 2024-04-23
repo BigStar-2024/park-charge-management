@@ -10,7 +10,7 @@ interface props {
 const Step1 = ({active, setActive}: props) => {
   return (
     <>
-      <div className="py-4 px-4">
+      <div className="py-4 px-4 ">
         <div className="text-[#ffffff] text-base font-medium px-4 py-2 bg-[#091C62] rounded-[10px]">
           Search / Step 1
         </div>

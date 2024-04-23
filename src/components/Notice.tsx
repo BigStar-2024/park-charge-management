@@ -69,8 +69,8 @@ const Notice = ({
           >
             View More Information
           </button>
-          <ViewDetailModal isOpen={isModalOpen} onClose={closeModal} />
         </div>
+          <ViewDetailModal isOpen={isModalOpen} onClose={closeModal} />
       </div>
     </>
   );
