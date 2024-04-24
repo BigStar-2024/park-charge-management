@@ -16,12 +16,12 @@ function App() {
   const [stripePromise, setStripePromise] = useState<Stripe | null>(null); // Explicitly define the type of stripePromise
 
   useEffect(() => {
-    fetch("/config").then(async (r) => {
-      const { publishableKey } = await r.json();
-      loadStripe(publishableKey).then((stripeInstance) => {
-        setStripePromise(stripeInstance);
-      });
-    });
+    // fetch("/config").then(async (r) => {
+    //   const { publishableKey } = await r.json();
+    //   loadStripe(publishableKey).then((stripeInstance) => {
+    //     setStripePromise(stripeInstance);
+    //   });
+    // });
   }, []);
 
   return (

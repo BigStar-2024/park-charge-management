@@ -9,7 +9,7 @@ const pdfURL = "/public/document.pdf";
 
 app.use(express.static("public"));
 app.use(express.json());
-app.use(cors());
+app.use(cors);
 const http = require("http");
 
 const calculateOrderAmount = (items) => {
@@ -67,20 +67,27 @@ app.post("/create-payment-intent", async (req, res) => {
 });
 
 app.get('/getpdffile', async (req, res) => {
-  const filePath = path.join(__dirname, 'public', 'document.pdf');
-  const stat = fs.statSync(filePath);
+  // const filePath = path.join(__dirname, 'public', 'document.pdf');
+  // const stat = fs.statSync(filePath);
 
-  res.writeHead(200, {
-    'Content-Type': 'application/pdf',
-    'Content-Length': stat.size,
-    'Content-Disposition': 'attachment; filename=example.pdf',
-  });
+  // res.writeHead(200, {
+  //   'Content-Type': 'application/pdf',
+  //   'Content-Length': stat.size,
+  //   'Content-Disposition': 'attachment; filename=example.pdf',
+  // });
 
+  console.log("PDF File sending...")
+  res.send("okay");
 
-  const readStream = fs.createReadStream(filePath);
-  readStream.pipe(res);
+  // const readStream = fs.createReadStream(filePath);
+  // readStream.pipe(res);
 })
 
 
-app.listen(4242, () => console.log("Node server listening on port 4242!"));
+// app.listen(4242, () => console.log("Node server listening on port 4242!"));
 
+const server = http.createServer(app);
+
+server.listen(4242, () => {
+  console.log(`Node server listening on port 4242!`);
+});

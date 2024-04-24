@@ -1,8 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppSelector } from "../redux/hooks";
+import axios, { AxiosResponse } from 'axios';
 import closeBtn from "./assets/Closebtn.svg";
 import BasicButtons from "./Button";
+import { PDFDocument } from "pdf-lib";
 
 type ModalProps = {
   isOpen: boolean;
@@ -11,6 +13,7 @@ type ModalProps = {
 
 const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [pdfDoc, setPDFDoc] = useState<PDFDocument | null>(null);
   const licensePlateNumber = useAppSelector(
     (state) => state.pay.licensePlateNumber
   );
@@ -22,6 +25,31 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     setIsModalOpen(false);
   };
 
+  const fetchData = async () => {
+    try {
+      const response: AxiosResponse<Blob> = await axios.get("http://localhost:4242/getpdffile", {
+        responseType: 'blob', // Set the response type to blob
+      });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      // const url = "https://pdf-lib.js.org/assets/with_update_sections.pdf";
+      const existingPdfBytes = await fetch(url).then((res) =>
+        res.arrayBuffer()
+      );
+      const pdfdoc = await PDFDocument.load(existingPdfBytes);
+      setPDFDoc(pdfdoc);
+    } catch (error) {
+
+    }
+  };
+  useEffect(() => {
+    fetchData().then(() => {
+      console.log("first:", pdfDoc);
+    }).catch((error) => console.error('error'));
+  }, []);
+
+  // const handlePrint = (date, payment_type, status, item, charge_number, charge_type, amount_due, amount_paid) => {
+
+  // }
 
   if (!isOpen) return null;
   return (
@@ -30,7 +58,7 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         <div className="flex flex-col relative flex-col h-auto w-[600px] max-w-[600px] bg-white rounded-[10px]">
           <div className="bg-[#FA551D] w-full py-3 px-5 text-white text-2xl rounded-t-[10px] font-medium">
             More Information
-          </div>
+          </div> 
           <button
             onClick={onClose}
             className="absolute right-[30px] top-3 w-[36px]"
@@ -160,18 +188,18 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
           <div className="flex justify-center">
-          <div className="mb-4 mx-4" onClick={onClose}>
-            <BasicButtons
-              text="Close"
-              width="100px"
-              paddingX="20px"
-              paddingY="8px"
-              bgColor="#FA551D"
-              hoverColor="#FFAD92"
-              fontSize="16px"
-            />
+            <div className="mb-4 mx-4" onClick={onClose}>
+              <BasicButtons
+                text="Close"
+                width="100px"
+                paddingX="20px"
+                paddingY="8px"
+                bgColor="#FA551D"
+                hoverColor="#FFAD92"
+                fontSize="16px"
+              />
             </div>
-            <a href="/result/violationpay" className="mb-4 mx-4">
+            <div className="mb-4 mx-4">
               <BasicButtons
                 text="Print"
                 width="100px"
@@ -181,7 +209,7 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 hoverColor="#FFAD92"
                 fontSize="16px"
               />
-            </a>
+            </div>
             <a href="/result/violationpay" className="mb-4 mx-4">
               <BasicButtons
                 text="Pay"
