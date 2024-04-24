@@ -4,9 +4,11 @@ import Input from '@mui/joy/Input';
 interface StateTextFieldsProps {
   width?: string;
   placeholder?: string; 
+  value: string; // Add value prop
+  onChange: (value: string) => void; // Add onChange prop
 }
 
-export default function CustomizeInputText2({ width, placeholder }: StateTextFieldsProps) {
+export default function CustomizeInputText2({ width, placeholder, value, onChange }: StateTextFieldsProps) {
   return (
     <Input
       startDecorator="#"
@@ -20,6 +22,10 @@ export default function CustomizeInputText2({ width, placeholder }: StateTextFie
         "& .MuiInput-startDecorator": {
           color: "#FFC0CB", // Set the color of the startDecorator
         }
+      }}
+      value={value}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange(event.target.value);
       }}
     />
   );

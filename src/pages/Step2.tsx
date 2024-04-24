@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Notice2 from "../components/Notice2";
 import SelectIndicator from "../components/SelectState";
 import CustomizeInputText from "../components/CustomizeInputText";
@@ -11,6 +11,15 @@ interface props {
 }
 
 const Step2 = ({ active, setActive }: props) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [city, setCity] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [stateLocation, setStateLocation] = useState("");
+
   return (
     <>
       <div className="py-4 px-4">
@@ -55,6 +64,10 @@ const Step2 = ({ active, setActive }: props) => {
                     <CustomizeInputText
                       width="240px"
                       placeholder="First Name"
+                      value={firstName}
+                      onChange={(value) => {
+                        setFirstName(value);
+                      }}
                     />
                   </div>
                 </div>
@@ -63,7 +76,14 @@ const Step2 = ({ active, setActive }: props) => {
                     Last Name
                   </p>
                   <div>
-                    <CustomizeInputText width="240px" placeholder="Last Name" />
+                    <CustomizeInputText
+                      width="240px"
+                      placeholder="Last Name"
+                      value={lastName}
+                      onChange={(value) => {
+                        setLastName(value);
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex mt-4">
@@ -71,7 +91,14 @@ const Step2 = ({ active, setActive }: props) => {
                     Address
                   </p>
                   <div>
-                    <CustomizeInputText width="240px" placeholder="Address" />
+                    <CustomizeInputText
+                      width="240px"
+                      placeholder="Address"
+                      value={address}
+                      onChange={(value) => {
+                        setAddress(value);
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex mt-4">
@@ -79,7 +106,14 @@ const Step2 = ({ active, setActive }: props) => {
                     Address2
                   </p>
                   <div>
-                    <CustomizeInputText width="240px" placeholder="Address2" />
+                    <CustomizeInputText
+                      width="240px"
+                      placeholder="Address2"
+                      value={address2}
+                      onChange={(value) => {
+                        setAddress2(value);
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex mt-4">
@@ -87,7 +121,14 @@ const Step2 = ({ active, setActive }: props) => {
                     City
                   </p>
                   <div>
-                    <CustomizeInputText width="240px" placeholder="City" />
+                    <CustomizeInputText
+                      width="240px"
+                      placeholder="City"
+                      value={city}
+                      onChange={(value) => {
+                        setCity(value);
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex mt-4">
@@ -98,7 +139,10 @@ const Step2 = ({ active, setActive }: props) => {
                     <SelectIndicator
                       width="240px"
                       placeholder="Select State"
-                      onChange={(e: any, value: string) => {}}
+                      value={stateLocation}
+                      onChange={(e: any, value: string) => {
+                        setStateLocation(value);
+                      }}
                     />
                   </div>
                 </div>
@@ -107,7 +151,14 @@ const Step2 = ({ active, setActive }: props) => {
                     Zipcode
                   </p>
                   <div>
-                    <CustomizeInputText width="240px" placeholder="Zipcode" />
+                    <CustomizeInputText
+                      width="240px"
+                      placeholder="Zipcode"
+                      value={zipcode}
+                      onChange={(value) => {
+                        setZipcode(value);
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex mt-4">
@@ -118,6 +169,10 @@ const Step2 = ({ active, setActive }: props) => {
                     <CustomizeInputText
                       width="240px"
                       placeholder="Phone Number"
+                      value={phoneNumber}
+                      onChange={(value) => {
+                        setPhoneNumber(value);
+                      }}
                     />
                   </div>
                 </div>

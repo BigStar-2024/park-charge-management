@@ -3,8 +3,29 @@ import CustomizeInputText from "../components/CustomizeInputText";
 import CustomizeInputText2 from "../components/CustomizeInputText2";
 import BasicButtons from "../components/Button";
 import SelectIndicator from "../components/SelectState";
+import { useAppDispatch } from "../redux/hooks";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { licensePlateNumber } from "../redux/slice/payReducer";
+import { stateLocation } from "../redux/slice/payReducer";
 
 const Home = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [parkingChargeNumber, setParkingChargeNumber] = useState("");
+  const [plateNumber, setPlateNumber] = useState("");
+  const [stateLocation, setStateLocation] = useState("");
+  const [VIN, setVIN] = useState("");
+  const [error, setError] = useState("");
+
+  const handleContinue = () => {
+    if (parkingChargeNumber || (plateNumber && stateLocation)) {
+      navigate("/result");
+    } else {
+      setError("Please enter the required information.");
+    }
+  };
+
   return (
     <>
       <div className=" w-screen h-auto bg-[#EFF3FF]">
@@ -55,9 +76,13 @@ const Home = () => {
                         <CustomizeInputText
                           width="240px"
                           placeholder="Charge Notice Number"
+                          value={parkingChargeNumber}
+                          onChange={(value) => {
+                            setParkingChargeNumber(value);
+                          }}
                         />
                       </div>
-                      <div className="mb-6">
+                      <div className="mb-6" onClick={handleContinue}>
                         <BasicButtons
                           text="Search"
                           width="auto"
@@ -89,6 +114,11 @@ const Home = () => {
                         <CustomizeInputText2
                           width="240px"
                           placeholder="License Plate"
+                          value={plateNumber}
+                          onChange={(value) => {
+                            setPlateNumber(value);
+                            dispatch(licensePlateNumber(String(value)));
+                          }}
                         />
                       </div>
                     </div>
@@ -100,12 +130,12 @@ const Home = () => {
                         <div className="mb-4">
                           <SelectIndicator
                             width="240px"
-                            onChange={(e: any, value: string) => {}}
                             placeholder="Select State"
-                            
+                            value={stateLocation}
+                            onChange={(value) => setStateLocation(value)}
                           />
                         </div>
-                        <div className="mb-6">
+                        <div className="mb-4" onClick={handleContinue}>
                           <BasicButtons
                             text="Search"
                             width="auto"
@@ -116,6 +146,7 @@ const Home = () => {
                             fontSize="14px"
                           />
                         </div>
+                        <div>{error && <p className="text-red-500 mb-4">{error}</p>}</div>
                       </div>
                     </div>
                   </div>
@@ -124,7 +155,8 @@ const Home = () => {
             </div>
             <div className="border-x border-[#FA551D] w-full h-auto p-4">
               <div className="text-[#ffffff] text-lg font-medium px-4 py-2 bg-[#091C62] rounded-t-[10px] tracking-tighter">
-                To see all open Parking Charge Notices for your vehicle, enter your VIN number here:
+                To see all open Parking Charge Notices for your vehicle, enter
+                your VIN number here:
               </div>
               <div className="flex flex-col border border-[#091C62] w-full h-auto pr-40 rounded-b-[10px]">
                 <div className="flex justify-end">
@@ -137,9 +169,13 @@ const Home = () => {
                         <CustomizeInputText2
                           width="240px"
                           placeholder="VIN Number"
+                          value={VIN}
+                          onChange={(value) => {
+                            setVIN(value);
+                          }}
                         />
                       </div>
-                      <div className="mb-6">
+                      <div className="mb-6" onClick={handleContinue}>
                         <BasicButtons
                           text="Search"
                           width="auto"
