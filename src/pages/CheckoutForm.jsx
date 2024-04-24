@@ -56,13 +56,39 @@ export default function CheckoutForm() {
 
     setIsLoading(true);
 
+    // const { error } = await stripe.confirmPayment({
+    //   elements,
+    //   confirmParams: {
+    //     // Make sure to change this to your payment completion page
+    //     return_url: `${window.location.origin}/completion`,
+    //     receipt_email: email,
+    //   },
+    // });
+
+    const paymentElement = elements.create('payment', {
+      fields: {
+        billingDetails: {
+          address: {
+            country: 'never'
+          }
+        }
+      },
+    });
+
+    // Confirm the card payment that was created server side:
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/completion`,
-        receipt_email: email,
-      },
+        return_url: `your_return_url`,
+        payment_method_data: {
+          billing_details: {
+            address: {
+              country: 'US'
+            }
+
+          }
+        },
+      }
     });
 
     // This point will only be reached if there is an immediate error when

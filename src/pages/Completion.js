@@ -1,9 +1,14 @@
 import success from "../components/assets/Success.gif";
 import { useEffect, useState } from 'react';
+import Step3 from "./Step3";
+
+
 
 function Completion(props) {
   const [messageBody, setMessageBody] = useState('');
   const { stripePromise } = props;
+  const [active, setActive] = useState(false);
+
 
   useEffect(() => {
     if (!stripePromise) return;
@@ -21,19 +26,71 @@ function Completion(props) {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-        <div
-          className=" rounded-[20px] border-solid border-[0px] bg-[#FFFAF9] relative py-10 px-20 m-10 shadow-lg"
-          style={{ transition: "transform 3s", transform: "scale(1)" }}
-        >
-          <div className='flex flex-col justify-center items-center'>
-            <div className="mt-5">
-              <img src={success} alt="Success" className="success-img"></img>
+      <div className=" w-screen h-auto bg-[#EFF3FF]">
+        <a href="/" className="absolute top-[10px] left-[40px]">
+          <img
+            src="https://i.ibb.co/HBQk2wd/logo.png"
+            alt="logo"
+            className="h-[80px] w-auto "
+          ></img>
+        </a>
+        <div className="flex overflow-hidden bg-[#FFF5F3] h-[100px] justify-center items-center text-[#091C62] border-b-2 border-[#FA551D]">
+          <a
+            className="active text-center py-8 px-6 text-2xl hover:bg-[#FA551D] hover:text-white hover:duration-300"
+            href="/home"
+          >
+            Home
+          </a>
+          <a
+            className="active text-center py-8 px-6 text-2xl hover:bg-[#FA551D] hover:text-white hover:duration-300"
+            href="/about"
+          >
+            About
+          </a>
+          <a
+            className="active text-center py-8 px-6 text-2xl hover:bg-[#FA551D] hover:text-white hover:duration-300"
+            href="/contact"
+          >
+            Contact
+          </a>
+        </div>
+
+        <div className="flex justify-center py-20">
+          <div className="flex flex-col h-auto w-[720px] max-w-[720px] bg-white rounded-[10px]">
+            <div className="bg-[#FA551D] w-full py-3 px-5 text-white text-2xl rounded-t-[10px] font-medium">
+              Step2: Payment Details
             </div>
-            <p className='text-4xl text-[#FA551D] font-bold mt-4'>Payment succeeded!</p>
-            <p className='text-2xl text-[#091C62] font-bold mt-6'>Thanks for your park!</p>
-            <a href="/" className="text-2xl text-[#091C62] mx-2 underline mt-4">HOME</a>
-            <div id="messages" role="alert" style={messageBody ? { display: 'block' } : {}}>{messageBody}</div>
+            <div className="border-x border-[#FA551D] w-full h-auto">
+              <Step3 active={active} setActive={setActive} />
+            </div>
+            <div className="p-4 border-x border-[#FA551D] mb-8">
+              <div className="flex border bg-[#ffbfa1] bg-opacity-50 w-full rounded-[10px] h-auto">
+                <div className="flex justify-center ml-8 items-center relative">
+                  <img className="w-[180px] border h-auto" src={success}></img>
+                </div>
+                <div className="flex flex-col items-center  justify-center mb-4">
+                  <p className="text-black text-opacity-80 text-4xl font-bold my-4">Success!</p>
+                  <p className="text-black text-base font-semibold">Your Parking Charge Notice has been paid successfully</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex bg-[#FA551D] w-full h-auto rounded-b-[10px] items-center">
+              <div className="  py-3 pl-5 text-white text-lg  font-medium">
+                Copyright 2024
+              </div>
+              <a
+                href="https://pkg-shared-files.s3.amazonaws.com/brands/etico/docs/privacy.pdf"
+                className="text-base text-white hover:text-[blue] px-4"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="https://pkg-shared-files.s3.amazonaws.com/brands/etico/docs/terms.pdf"
+                className="text-base text-white hover:text-[blue]"
+              >
+                Terms of Service
+              </a>
+            </div>
           </div>
         </div>
       </div>
