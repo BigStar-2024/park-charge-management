@@ -7,12 +7,14 @@ interface PayloadAction<T> {
 
 interface payState {
   licensePlateNumber: string;
-  stateLocation: string;
+  stateLocation_redux: string;
+  parkingChargeNumber_redux: string;
 }
 
 const initialState: payState = {
   licensePlateNumber: 'ABCD12',
-  stateLocation: 'Florida'
+  stateLocation_redux: 'Florida',
+  parkingChargeNumber_redux: 'DX-101'
   //Initial hourly rate value
 };
 
@@ -23,13 +25,16 @@ export const payReducer = createSlice({
     licensePlateNumber: (state: payState, action: PayloadAction<string>) => {
       state.licensePlateNumber = action.payload;
     },
-    stateLocation: (state: payState, action: PayloadAction<string>) => {
-      state.stateLocation = action.payload;
+    stateLocation_redux: (state: payState, action: PayloadAction<string>) => {
+      state.stateLocation_redux = action.payload;
+    }, 
+    parkingChargeNumber_redux: (state: payState, action: PayloadAction<string>) => {
+      state.parkingChargeNumber_redux = action.payload;
     }, 
     
   },
 });
 
-export const { licensePlateNumber, stateLocation} = payReducer.actions;
+export const { licensePlateNumber, stateLocation_redux, parkingChargeNumber_redux} = payReducer.actions;
 
 export default payReducer.reducer;

@@ -7,7 +7,9 @@ import { useAppDispatch } from "../redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { licensePlateNumber } from "../redux/slice/payReducer";
-import { stateLocation } from "../redux/slice/payReducer";
+import { stateLocation_redux } from "../redux/slice/payReducer";
+import { parkingChargeNumber_redux } from "../redux/slice/payReducer";
+
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -79,6 +81,7 @@ const Home = () => {
                           value={parkingChargeNumber}
                           onChange={(value) => {
                             setParkingChargeNumber(value);
+                            dispatch(parkingChargeNumber_redux(String(value)));
                           }}
                         />
                       </div>
@@ -132,7 +135,10 @@ const Home = () => {
                             width="240px"
                             placeholder="Select State"
                             value={stateLocation}
-                            onChange={(value) => setStateLocation(value)}
+                            onChange={(value) => {
+                              setStateLocation(value);
+                              dispatch(stateLocation_redux(String(value)));
+                            }}
                           />
                         </div>
                         <div className="mb-4" onClick={handleContinue}>

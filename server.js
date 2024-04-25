@@ -5,7 +5,6 @@ const path = require("path");
 const cors = require('cors');
 // This is your test secret API key.
 const stripe = require("stripe")('sk_test_51P2lpQC9Zd6I2Ms1GvOYwHZUIGfQFbny1XJBEdABFVaLlko3erp8Zk5brxb7dHQJj45Hl0kVb3ddFb56nRdEHfwK00XRDvuqaN');
-const pdfURL = "/public/document.pdf";
 
 app.use(express.static("public"));
 app.use(express.json());

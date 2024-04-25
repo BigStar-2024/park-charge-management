@@ -11,7 +11,7 @@ type ModalProps = {
   onClose: () => void;
 };
 
-const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pdfDoc, setPDFDoc] = useState<PDFDocument | null>(null);
   const licensePlateNumber = useAppSelector(
@@ -97,7 +97,7 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
   return (
-    <div className="z-20 absolute top-[-440px] w-auto h-auto mt-[40px] flex items-center justify-center border border-[#091C62] rounded-[10px]">
+    <div className="z-20 absolute top-[-380px] w-auto h-auto mt-[40px] flex items-center justify-center border border-[#091C62] rounded-[10px]">
       <div className="">
         <div className="flex flex-col relative flex-col h-auto w-[600px] max-w-[600px] bg-white rounded-[10px]">
           <div className="bg-[#FA551D] w-full py-3 px-5 text-white text-2xl rounded-t-[10px] font-medium">
@@ -254,17 +254,6 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 fontSize="16px"
               />
             </div>
-            <a href="/result/violationpay" className="mb-4 mx-4">
-              <BasicButtons
-                text="Pay"
-                width="100px"
-                paddingX="40px"
-                paddingY="8px"
-                bgColor="#FA551D"
-                hoverColor="#FFAD92"
-                fontSize="16px"
-              />
-            </a>
           </div>
         </div>
       </div>
@@ -272,4 +261,4 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   );
 };
 
-export default ViewDetailModal;
+export default ViewDetailModal2;
