@@ -8,6 +8,7 @@ import {
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const paying_id = "53274633"
 
   const [email, setEmail] = useState('');
 
@@ -45,6 +46,23 @@ export default function CheckoutForm() {
     });
   }, [stripe]);
 
+  const nodemailer = async () => {
+    try {
+      let response = await fetch("http://88.99.90.19:4242/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          messages: "ok",
+        }),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -65,32 +83,7 @@ export default function CheckoutForm() {
       },
     });
 
-    // const paymentElement = elements.create('payment', {
-    //   fields: {
-    //     billingDetails: {
-    //       address: {
-    //         country: 'never'
-    //       }
-    //     }
-    //   },
-    // });
-
-    // // Confirm the card payment that was created server side:
-    // const { error } = await stripe.confirmPayment({
-    //   elements,
-    //   confirmParams: {
-    //     return_url: `your_return_url`,
-    //     payment_method_data: {
-    //       billing_details: {
-    //         address: {
-    //           country: 'US'
-    //         }
-
-    //       }
-    //     },
-    //   }
-    // });
-
+  
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to
     // your `return_url`. For some payment methods like iDEAL, your customer will
@@ -120,7 +113,7 @@ export default function CheckoutForm() {
       />
 
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit" className="submit">
+      <button disabled={isLoading || !stripe || !elements} id="submit" className="submit" onClick={nodemailer}>
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>

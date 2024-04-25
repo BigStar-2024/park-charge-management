@@ -21,6 +21,7 @@
     "@types/react-dom": "^18.2.25",
     "axios": "^1.6.8",
     "cors": "^2.8.5",
+    "nodemailer": "^6.9.13",
     "nodemon": "^3.1.0",
     "pdf-lib": "^1.17.1",
     "react": "^18.2.0",

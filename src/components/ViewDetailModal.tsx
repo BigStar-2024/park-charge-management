@@ -45,7 +45,7 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     fetchData()
       .then(() => {
-        console.log("first:", pdfDoc);
+        console.log("pdf success");
       })
       .catch((error) => console.error(error));
   }, []);
@@ -78,7 +78,7 @@ const formattedDateTime: string = `${month}/${day}/${year} ${hours}:${minutes} $
     payment_type: "N/A",
     status: "Unpaid",
     item: "1",
-    charge_number: "53274633",
+    paying_id: "53274633",
     charge_type: "FLL - Failure to Pay",
     amount_due: "$90.00",
     amount_paid: "$0.00",
@@ -92,7 +92,7 @@ const formattedDateTime: string = `${month}/${day}/${year} ${hours}:${minutes} $
         { name: "Payment Type", value: data.payment_type },
         { name: "Status", value: data.status },
         { name: "Parking Item", value: data.item },
-        { name: "Parking Charge Number", value: data.charge_number },
+        { name: "Parking Charge Number", value: data.paying_id },
         { name: "Parking Charge Type", value: data.charge_type },
         { name: "Amount Due", value: data.amount_due },
         { name: "Amount Paid", value: data.amount_paid },
