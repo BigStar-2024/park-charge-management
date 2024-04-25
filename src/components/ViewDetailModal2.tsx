@@ -50,15 +50,38 @@ const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       .catch((error) => console.error(error));
   }, []);
 
+   // ---------------------Current Time------------
+ // Create a new Date object
+const currentDate: Date = new Date();
+
+// Get the current date and time components
+const month: string = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+const day: string = String(currentDate.getDate()).padStart(2, '0');
+const year: number = currentDate.getFullYear();
+let hours: number = currentDate.getHours();
+const minutes: string = String(currentDate.getMinutes()).padStart(2, '0');
+const ampm: string = hours >= 12 ? 'PM' : 'AM'; // Determine AM or PM
+
+// Convert hours to 12-hour format
+hours = hours % 12;
+hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+// Construct the formatted date and time string
+const formattedDateTime: string = `${month}/${day}/${year} ${hours}:${minutes} ${ampm}`;
+
+// Display the formatted date and time
+// console.log(`The formatted current US time is: ${formattedDateTime}`);
+// ------------------------------------------
+
   const data = {
-    date: "123123",
-    payment_type: "ddd",
-    status: "aaa",
-    item: "eee",
-    charge_number: "fff",
-    charge_type: "ggg",
-    amount_due: "qqq",
-    amount_paid: "uuu",
+    date: formattedDateTime,
+    payment_type: "N/A",
+    status: "Unpaid",
+    item: "1",
+    charge_number: "53274633",
+    charge_type: "FLL - Failure to Pay",
+    amount_due: "$90.00",
+    amount_paid: "$0.00",
   };
 
   const handlePrint = async () => {
