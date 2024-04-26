@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from "axios";
 import closeBtn from "./assets/Closebtn.svg";
 import BasicButtons from "./Button";
 import { PDFDocument } from "pdf-lib";
+import { BASE_URL } from "../config";
 
 type ModalProps = {
   isOpen: boolean;
@@ -28,7 +29,7 @@ const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const fetchData = async () => {
     try {
       const response: AxiosResponse<Blob> = await axios.get(
-        "http://localhost:4242/getpdffile",
+        `${BASE_URL}/getpdffile`,
         {
           responseType: "blob", // Set the response type to blob
         }

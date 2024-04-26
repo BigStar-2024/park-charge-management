@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require("path");
 const cors = require('cors');
+const multer = require("multer");
 const service_email = "aadsf7463@gmail.com"
 const security_key = "hgbntpivrfgotxbv"
 // This is your test secret API key.
@@ -17,6 +18,31 @@ app.use(bodyParser.json());
 const http = require("http");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+let currentFile = '';
+
+const setCurrentFile = (value) => {
+  currentFile = value;
+}
+
+const getCurrentFile = () => {
+  return currentFile;
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Specify the destination folder for uploads
+  },
+  filename: function (req, file, cb) {
+    const ext = path.extname(file.originalname); // Get the file extension
+    const currentFileName = file.fieldname + '-' + Date.now() + ext;
+    cb(null, currentFileName); // Rename the file with original extension
+    console.log(currentFileName);
+    setCurrentFile("uploads/" + currentFileName);
+  }
+})
+
+const upload = multer({ storage: storage });
+
 
 const calculateOrderAmount = (items) => {
   // Replace this constant with a calculation of the order's amount
@@ -87,52 +113,59 @@ app.get('/getpdffile', async (req, res) => {
   readStream.pipe(res);
 })
 
+app.post("/savepdffile", upload.single('pdfFile'), async(req, res) => {
+  res.send('okay')
+})
+
 // ---------------------------nodemailer--------------------------
 
-// const sendMail = async (data) => {
 
-//   // const helpmessages = JSON.stringify(data.helpmessage);
-//   const messages = JSON.stringify(data.messages);
-//   console.log("daen--", messages);
+const sendMail = async (data) => {
 
-//   const transporter = nodemailer.createTransport({
-//     host: "smtp.gmail.com",
-//     port: 587,
-//     secure: false, // true for 465, false for other ports
-//     auth: {
-//       user: service_email,
-//       pass: security_key,
-//     },
-//   });
+  // const helpmessages = JSON.stringify(data.helpmessage);
+  const messages = JSON.stringify(data.messages);
+  const receive_email = JSON.stringify(data.email);
+  console.log("daen--", receive_email);
+
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: service_email,
+      pass: security_key,
+    },
+  });
   
-//   console.log("seve", service_email);
-//   console.log("seve", security_key);
-//   // Use the transporter to send emails
-//   try {
-//     const res = await transporter.sendMail({
-//       from: service_email,
-//       to: "kawanoaiyuki@gmail.com",
-//       subject: "Hello",
-//       html: messages,
-//       // text: helpmessages,
-//     });
-//     console.log("success!");
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// app.post('/send-email', async (req, res) => {
-//   console.log("here is now");
-//   console.log(req.body);
-//   // const { title, content } = req.body;
-//   // Do something with the name and email data
-
-//   sendMail(req.body);
+  console.log("seve", service_email);
+  console.log("seve", security_key);
+  // Use the transporter to send emails
+  try {
+    const res = await transporter.sendMail({
+      from: service_email,
+      to: receive_email,
+      subject: "Hello",
+      html: messages,
+      // text: helpmessages,
+    });
+    console.log("success!");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
-//   res.status(201).json({ message: 'User created successfully' });
-// });
+app.post('/send-email', async (req, res) => {
+  // console.log("here is now");
+  // console.log(req.body);
+  // const { title, content } = req.body;
+  // Do something with the name and email data
+
+  sendMail(req.body);
+
+
+  res.status(201).json({ message: 'User created successfully' });
+});
 // ---------------------------------------------------------------------
 
 
