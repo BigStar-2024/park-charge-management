@@ -88,83 +88,51 @@ app.get('/getpdffile', async (req, res) => {
 })
 
 // ---------------------------nodemailer--------------------------
-// app.post('/send-email', (req, res) => {
-//   const { email } = req.body;
-//   console.log("adf----", email);
 
-//   // Send "Great" message to the provided email
+// const sendMail = async (data) => {
+
+//   // const helpmessages = JSON.stringify(data.helpmessage);
+//   const messages = JSON.stringify(data.messages);
+//   console.log("daen--", messages);
+
 //   const transporter = nodemailer.createTransport({
-//     host: 'smtp.example.com',
+//     host: "smtp.gmail.com",
 //     port: 587,
 //     secure: false, // true for 465, false for other ports
 //     auth: {
 //       user: service_email,
-//       pass: security_key
-//     }
+//       pass: security_key,
+//     },
 //   });
-
-//   const mailOptions = {
-//     from: service_email,
-//     to: "kawanoaiyuki@gmail.com",
-//     subject: 'Great News!',
-//     text: 'Great'
-//   };
-
-//   transporter.sendMail(mailOptions, (error, info) => {
-//     if (error) {
-//       console.log(error);
-//       res.status(500).send('Failed to send the email');
-//     } else {
-//       console.log('Email sent: ' + info.response);
-//       res.send('Email sent successfully');
-//     }
-//   });
-// });
-
-const sendMail = async (data) => {
-
-  // const helpmessages = JSON.stringify(data.helpmessage);
-  const messages = JSON.stringify(data.messages);
-  console.log("daen--", messages);
-
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: service_email,
-      pass: security_key,
-    },
-  });
   
-  console.log("seve", service_email);
-  console.log("seve", security_key);
-  // Use the transporter to send emails
-  try {
-    const res = await transporter.sendMail({
-      from: service_email,
-      to: "kawanoaiyuki@gmail.com",
-      subject: "Hello",
-      html: messages,
-      // text: helpmessages,
-    });
-    console.log("success!");
-  } catch (error) {
-    console.log(error);
-  }
-};
+//   console.log("seve", service_email);
+//   console.log("seve", security_key);
+//   // Use the transporter to send emails
+//   try {
+//     const res = await transporter.sendMail({
+//       from: service_email,
+//       to: "kawanoaiyuki@gmail.com",
+//       subject: "Hello",
+//       html: messages,
+//       // text: helpmessages,
+//     });
+//     console.log("success!");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-app.post('/send-email', async (req, res) => {
-  console.log("here is now");
-  console.log(req.body);
-  // const { title, content } = req.body;
-  // Do something with the name and email data
+// app.post('/send-email', async (req, res) => {
+//   console.log("here is now");
+//   console.log(req.body);
+//   // const { title, content } = req.body;
+//   // Do something with the name and email data
 
-  sendMail(req.body);
+//   sendMail(req.body);
 
 
-  res.status(201).json({ message: 'User created successfully' });
-});
+//   res.status(201).json({ message: 'User created successfully' });
+// });
 // ---------------------------------------------------------------------
 
 

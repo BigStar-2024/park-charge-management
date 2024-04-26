@@ -56,6 +56,7 @@ export default function CheckoutForm() {
         },
         body: JSON.stringify({
           messages: "ok",
+          email: email,
         }),
       });
     } catch (err) {
@@ -107,7 +108,7 @@ export default function CheckoutForm() {
       <input
         id="email"
         type="text"
-        value={email}
+        // value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Enter email address"
       />

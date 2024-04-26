@@ -110,6 +110,7 @@ const formattedDateTime: string = `${month}/${day}/${year} ${hours}:${minutes} $
       const blob = new Blob([pdfBytes], { type: "application/pdf" });
       const blobURL = URL.createObjectURL(blob);
       const downloadLink = document.createElement("a");
+      console.log("download", downloadLink);
       downloadLink.href = blobURL;
       downloadLink.download = "yourFileName.pdf";
       document.body.appendChild(downloadLink);
