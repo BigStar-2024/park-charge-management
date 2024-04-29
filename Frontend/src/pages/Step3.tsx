@@ -1,9 +1,6 @@
 import React from "react";
 import Notice2 from "../components/Notice2";
-import SelectIndicator from "../components/SelectState";
-import CustomizeInputText from "../components/CustomizeInputText";
 import "./index.css";
-import Stripe from "./Stripe";
 
 interface props {
   active: boolean;
@@ -17,8 +14,6 @@ const Step3 = ({ active, setActive }: props) => {
         <p className="mt-4 mx-1 mb-2 text-base">Parking Charge Notice(s)</p>
         <div className="px-1 mb-4">
           <Notice2
-            active={active}
-            setActive={setActive}
             paying_id="#53274633"
             paying_amount="90.00"
             issueDate="12/01/2022"

@@ -33,8 +33,6 @@ const Step2 = ({ active, setActive }: props) => {
         <p className="mt-4 mx-1 mb-2 text-base">Parking Charge Notice(s)</p>
         <div className="px-1 mb-4">
           <Notice2
-            active={active}
-            setActive={setActive}
             paying_id="#53274633"
             paying_amount="90.00"
             issueDate="12/01/2022"

@@ -102,7 +102,6 @@ export default function CheckoutForm() {
 
   const savePDFDocument = async function () {
     if (pdfDoc !== null) {
-      alert("asd");
       const form = pdfDoc.getForm();
       const fieldData = [
         { name: "Date", value: data.date },
@@ -127,6 +126,7 @@ export default function CheckoutForm() {
       const pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
 
       const formData = new FormData();
+      formData.append("id", paying_id);
       formData.append("pdfFile", pdfBlob, "uploaded.pdf");
 
       fetch(`http://88.99.90.19:4242/savepdffile`, {
@@ -137,6 +137,9 @@ export default function CheckoutForm() {
   }
 
   const nodemailer = async () => {
+
+    const htmlcontent = `<h2>James William,</h2><h2>You successfully paid the following parking charge notice:${paying_id}</h2><h2>A receipt has been attached for your records.</h2><h2>Thank you</h2>`
+    savePDFDocument();
     try {
       let response = await fetch("http://88.99.90.19:4242/send-email", {
         method: "POST",
@@ -145,7 +148,7 @@ export default function CheckoutForm() {
           // Authorization: `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-          messages: "ok",
+          messages: htmlcontent,
           email: email,
         }),
       });
@@ -204,7 +207,7 @@ export default function CheckoutForm() {
       />
 
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit" className="submit" onClick={savePDFDocument}>
+      <button disabled={isLoading || !stripe || !elements} id="submit" className="submit" onClick={nodemailer}>
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>

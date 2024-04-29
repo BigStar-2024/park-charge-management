@@ -34,7 +34,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const ext = path.extname(file.originalname); // Get the file extension
-    const currentFileName = file.fieldname + '-' + Date.now() + ext;
+    const currentFileName = req.body.id + "receipt" + ext;
     cb(null, currentFileName); // Rename the file with original extension
     console.log(currentFileName);
     setCurrentFile("uploads/" + currentFileName);
@@ -125,7 +125,6 @@ const sendMail = async (data) => {
   // const helpmessages = JSON.stringify(data.helpmessage);
   const messages = JSON.stringify(data.messages);
   const receive_email = JSON.stringify(data.email);
-  console.log("daen--", receive_email);
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -137,15 +136,21 @@ const sendMail = async (data) => {
     },
   });
   
-  console.log("seve", service_email);
-  console.log("seve", security_key);
   // Use the transporter to send emails
+  const currentFileName = getCurrentFile();
   try {
     const res = await transporter.sendMail({
       from: service_email,
       to: receive_email,
       subject: "Hello",
       html: messages,
+      attachments: [
+        {
+          filename: currentFileName.replace("uploads/", ''),
+          path: getCurrentFile(),
+          contentType: 'application/pdf'
+        }
+      ]
       // text: helpmessages,
     });
     console.log("success!");

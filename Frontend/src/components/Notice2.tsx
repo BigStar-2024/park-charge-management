@@ -1,35 +1,25 @@
 import React, { useState } from "react";
-import BasicButtons from "./Button";
 import ViewDetailModal2 from "./ViewDetailModal2";
 import { useAppSelector } from "../redux/hooks";
 
 interface props {
-  active: boolean;
-  setActive: (_: boolean) => void;
   paying_id: string;
   paying_amount: string;
   issueDate: string;
 }
 
 const Notice2 = ({
-  active,
-  setActive,
   paying_id,
   paying_amount,
   issueDate,
 }: props) => {
-  const [buttonText, setButtonText] = useState("Pay");
   const licensePlateNumber = useAppSelector(
     (state) => state.pay.licensePlateNumber
   );
+  console.log(licensePlateNumber);
+  
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const payNow = () => {
-    setActive(!active);
-    setButtonText((prevText) => {
-      return prevText === "Pay" ? "Unselect" : "Pay";
-    });
-  };
 
   const openModal = () => {
     setIsModalOpen(true);

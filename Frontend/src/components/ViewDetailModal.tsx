@@ -12,7 +12,7 @@ type ModalProps = {
   onClose: () => void;
 };
 
-const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pdfDoc, setPDFDoc] = useState<PDFDocument | null>(null);
   const licensePlateNumber = useAppSelector(
@@ -46,40 +46,34 @@ const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     fetchData()
       .then(() => {
-        console.log("first:", pdfDoc);
+        console.log("pdf success");
       })
       .catch((error) => console.error(error));
   }, []);
 
-   // ---------------------Current Time------------
- // Create a new Date object
-const currentDate: Date = new Date();
+  // ---------------------Current Time------------
+  const currentDateTime = new Date(Date.now());
 
-// Get the current date and time components
-const month: string = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-const day: string = String(currentDate.getDate()).padStart(2, '0');
-const year: number = currentDate.getFullYear();
-let hours: number = currentDate.getHours();
-const minutes: string = String(currentDate.getMinutes()).padStart(2, '0');
-const ampm: string = hours >= 12 ? 'PM' : 'AM'; // Determine AM or PM
+  const options: Intl.DateTimeFormatOptions = {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  };
 
-// Convert hours to 12-hour format
-hours = hours % 12;
-hours = hours ? hours : 12; // Handle midnight (0 hours)
-
-// Construct the formatted date and time string
-const formattedDateTime: string = `${month}/${day}/${year} ${hours}:${minutes} ${ampm}`;
-
-// Display the formatted date and time
-// console.log(`The formatted current US time is: ${formattedDateTime}`);
-// ------------------------------------------
+  const formattedDateTime: string = currentDateTime.toLocaleString(
+    "en-US",
+    options
+  );
 
   const data = {
     date: formattedDateTime,
     payment_type: "N/A",
     status: "Unpaid",
     item: "1",
-    charge_number: "53274633",
+    paying_id: "53274633",
     charge_type: "FLL - Failure to Pay",
     amount_due: "$90.00",
     amount_paid: "$0.00",
@@ -93,12 +87,12 @@ const formattedDateTime: string = `${month}/${day}/${year} ${hours}:${minutes} $
         { name: "Payment Type", value: data.payment_type },
         { name: "Status", value: data.status },
         { name: "Parking Item", value: data.item },
-        { name: "Parking Charge Number", value: data.charge_number },
+        { name: "Parking Charge Number", value: data.paying_id },
         { name: "Parking Charge Type", value: data.charge_type },
         { name: "Amount Due", value: data.amount_due },
         { name: "Amount Paid", value: data.amount_paid },
         { name: "Total Amount Paid", value: data.amount_paid },
-        { name: "Total Amount Due", value: data.amount_due }
+        { name: "Total Amount Due", value: data.amount_due },
       ];
 
       fieldData.forEach(({ name, value }) => {
@@ -111,8 +105,9 @@ const formattedDateTime: string = `${month}/${day}/${year} ${hours}:${minutes} $
       const blob = new Blob([pdfBytes], { type: "application/pdf" });
       const blobURL = URL.createObjectURL(blob);
       const downloadLink = document.createElement("a");
-      console.log("download", downloadLink);
       downloadLink.href = blobURL;
+      console.log("download", downloadLink);
+
       downloadLink.download = "yourFileName.pdf";
       document.body.appendChild(downloadLink);
       downloadLink.click();
@@ -122,7 +117,7 @@ const formattedDateTime: string = `${month}/${day}/${year} ${hours}:${minutes} $
 
   if (!isOpen) return null;
   return (
-    <div className="z-20 absolute top-[-380px] w-auto h-auto mt-[40px] flex items-center justify-center border border-[#091C62] rounded-[10px]">
+    <div className="z-20 absolute top-[-440px] w-auto h-auto mt-[40px] flex items-center justify-center border border-[#091C62] rounded-[10px]">
       <div className="">
         <div className="flex flex-col relative flex-col h-auto w-[600px] max-w-[600px] bg-white rounded-[10px]">
           <div className="bg-[#FA551D] w-full py-3 px-5 text-white text-2xl rounded-t-[10px] font-medium">
@@ -279,6 +274,17 @@ const formattedDateTime: string = `${month}/${day}/${year} ${hours}:${minutes} $
                 fontSize="16px"
               />
             </div>
+            <a href="/result/violationpay" className="mb-4 mx-4">
+              <BasicButtons
+                text="Pay"
+                width="100px"
+                paddingX="40px"
+                paddingY="8px"
+                bgColor="#FA551D"
+                hoverColor="#FFAD92"
+                fontSize="16px"
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -286,4 +292,4 @@ const formattedDateTime: string = `${month}/${day}/${year} ${hours}:${minutes} $
   );
 };
 
-export default ViewDetailModal2;
+export default ViewDetailModal;
