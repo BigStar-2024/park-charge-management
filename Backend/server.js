@@ -44,11 +44,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-const calculateOrderAmount = (items) => {
+const calculateOrderAmount = (value) => {
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // people from directly manipulating the amount on the client
-  return 1400;
+  return value;
 };
 
 const chargeCustomer = async (customerId) => {
@@ -85,7 +85,7 @@ app.post("/create-payment-intent", async (req, res) => {
   const paymentIntent = await stripe.paymentIntents.create({
     customer: customer.id,
     setup_future_usage: "off_session",
-    amount: calculateOrderAmount(items),
+    amount: calculateOrderAmount(items[0].payAmount*100),
     currency: "usd",
     // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
     automatic_payment_methods: {
