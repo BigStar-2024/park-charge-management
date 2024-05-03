@@ -6,7 +6,7 @@ import closeBtn from "./assets/Closebtn.svg";
 import BasicButtons from "./Button";
 import { PDFDocument } from "pdf-lib";
 import { BASE_URL } from "../config";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type ModalProps = {
   isOpen: boolean;
