@@ -29,7 +29,7 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     setIsModalOpen(false);
   };
   const handlePayPage = () => {
-    navigate('/violationpay')
+    navigate('/result/violationpay')
   }
 
   const fetchData = async () => {
