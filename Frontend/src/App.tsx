@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { loadStripe, Stripe } from "@stripe/stripe-js"; // Import the Stripe type from '@stripe/stripe-js'
+import { Stripe } from "@stripe/stripe-js"; // Import the Stripe type from '@stripe/stripe-js'
 import "./App.css";
 import First from "./pages/FirstPage";
 import ParkingChargeNoticeResult from "./pages/ChargeNoticeResult";
@@ -15,14 +15,14 @@ import { store } from './redux/store';
 function App() {
   const [stripePromise, setStripePromise] = useState<Stripe | null>(null); // Explicitly define the type of stripePromise
 
-  useEffect(() => {
-    // fetch("/config").then(async (r) => {
-    //   const { publishableKey } = await r.json();
-    //   loadStripe(publishableKey).then((stripeInstance) => {
-    //     setStripePromise(stripeInstance);
-    //   });
-    // });
-  }, []);
+  // useEffect(() => {
+  //   // fetch("/config").then(async (r) => {
+  //   //   const { publishableKey } = await r.json();
+  //   //   loadStripe(publishableKey).then((stripeInstance) => {
+  //   //     setStripePromise(stripeInstance);
+  //   //   });
+  //   // });
+  // }, []);
 
   return (
     <div className="App">

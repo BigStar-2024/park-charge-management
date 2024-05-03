@@ -13,19 +13,19 @@ type ModalProps = {
 };
 
 const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [pdfDoc, setPDFDoc] = useState<PDFDocument | null>(null);
   const licensePlateNumber = useAppSelector(
     (state) => state.pay.licensePlateNumber
   );
   const payAmount = useAppSelector((state) => state.pay.payAmount_redux)
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
   const fetchData = async () => {
     try {
@@ -50,7 +50,7 @@ const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         console.log("first:", pdfDoc);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [pdfDoc]);
 
    // ---------------------Current Time------------
    const currentDateTime = new Date(Date.now());
@@ -222,37 +222,37 @@ const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 <img
                   src="/1.jpg"
                   className="h-full w-full object-cover"
-                  alt="camera photo"
+                  alt="camera"
                 ></img>
               </div>
               <div className="w-[45%] aspect-h-1 aspect-w-1 p-2 border rounded-[10px] border-[#grey]">
                 <img
                   src="/2.jpg"
                   className="h-full w-full object-cover"
-                  alt="camera photo"
+                  alt="camera"
                 ></img>
               </div>
-              <div className="w-[45%] aspect-h-1 aspect-w-1 p-2 border rounded-[10px] border-[#grey]">
+              {/* <div className="w-[45%] aspect-h-1 aspect-w-1 p-2 border rounded-[10px] border-[#grey]">
                 <img
                   src="/3.jpg"
                   className="h-full w-full object-cover"
-                  alt="camera photo"
+                  alt="camera"
                 ></img>
               </div>
               <div className="w-[45%] aspect-h-1 aspect-w-1 p-2 border rounded-[10px] border-[#grey]">
                 <img
                   src="/4.jpg"
                   className="h-full w-full object-cover"
-                  alt="camera photo"
+                  alt="camera"
                 ></img>
               </div>
               <div className="w-[45%] aspect-h-1 aspect-w-1 p-2 border rounded-[10px] border-[#grey]">
                 <img
                   src="/5.jpg"
                   className="h-full w-full object-cover"
-                  alt="camera photo"
+                  alt="camera"
                 ></img>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="flex justify-center">

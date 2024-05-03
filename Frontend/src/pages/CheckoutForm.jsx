@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { PDFDocument } from "pdf-lib";
 import { BASE_URL } from "../config";
 import { useAppSelector } from "../redux/hooks";
