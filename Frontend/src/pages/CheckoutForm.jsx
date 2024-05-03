@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { PDFDocument } from "pdf-lib";
 import { BASE_URL } from "../config";
+import { useAppSelector } from "../redux/hooks";
 
 import {
   PaymentElement,
@@ -20,6 +21,7 @@ export default function CheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [pdfDoc, setPDFDoc] = useState(null);
+  const payAmount = useAppSelector((state) => state.pay.payAmount_redux)
 
   const fetchData = async () => {
     try {
@@ -96,7 +98,7 @@ export default function CheckoutForm() {
     item: "1",
     paying_id: "53274633",
     charge_type: "FLL - Failure to Pay",
-    amount_due: "$90.00",
+    amount_due: `$${payAmount}`,
     amount_paid: "$0.00",
   };
 

@@ -18,6 +18,7 @@ const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const licensePlateNumber = useAppSelector(
     (state) => state.pay.licensePlateNumber
   );
+  const payAmount = useAppSelector((state) => state.pay.payAmount_redux)
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -79,7 +80,7 @@ const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     item: "1",
     charge_number: "53274633",
     charge_type: "FLL - Failure to Pay",
-    amount_due: "$90.00",
+    amount_due: `$${payAmount}`,
     amount_paid: "$0.00",
   };
 
@@ -190,7 +191,7 @@ const ViewDetailModal2: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             <div className="text-[#ffffff] text-lg font-medium px-4 py-2 bg-[#091C62] rounded-t-[10px] tracking-tight">
               <div className="flex justify-between">
                 <p>Total Parking Charge Notice</p>
-                <p>$90.00</p>
+                <p>${payAmount}</p>
               </div>
             </div>
             <div className="flex flex-col w-full h-auto tracking-tight">

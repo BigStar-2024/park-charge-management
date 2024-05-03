@@ -4,6 +4,7 @@ import SelectIndicator from "../components/SelectState";
 import CustomizeInputText from "../components/CustomizeInputText";
 import "./index.css";
 import Stripe from "./Stripe";
+import { useAppSelector } from "../redux/hooks";
 
 interface props {
   active: boolean;
@@ -11,6 +12,7 @@ interface props {
 }
 
 const Step2 = ({ active, setActive }: props) => {
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -19,6 +21,8 @@ const Step2 = ({ active, setActive }: props) => {
   const [zipcode, setZipcode] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [stateLocation, setStateLocation] = useState("");
+  const payAmount = useAppSelector((state) => state.pay.payAmount_redux)
+  const payAmount_string = String(payAmount)
 
   return (
     <>
@@ -34,12 +38,12 @@ const Step2 = ({ active, setActive }: props) => {
         <div className="px-1 mb-4">
           <Notice2
             paying_id="#53274633"
-            paying_amount="90.00"
+            paying_amount={payAmount_string}
             issueDate="12/01/2022"
           />
         </div>
         <div className="h-auto border border-[#091C62] flex flex-col items-end px-4 py-2 mx-1">
-          <p className="text-base font-medium">Parking Charge Notice: $90.00</p>
+          <p className="text-base font-medium">Parking Charge Notice: ${payAmount}</p>
           <p className="text-base font-medium">
             Online Payment Convenience: $4.99
           </p>

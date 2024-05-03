@@ -1,13 +1,14 @@
 import React from "react"; 
 import Notice from "../components/Notice";
-import Notice2 from "../components/Notice2";
-
+import { useAppSelector } from "../redux/hooks";
 interface props {
   active: boolean;
   setActive: (_: boolean) => void;
 }
 
 const Step1 = ({active, setActive}: props) => {
+  const payAmount = useAppSelector((state) => state.pay.payAmount_redux)
+  const payAmount_string = String(payAmount)
   return (
     <>
       <div className="py-4 px-4 ">
@@ -24,8 +25,8 @@ const Step1 = ({active, setActive}: props) => {
         </p>
         <p className="mt-4 mx-1 mb-2 text-base">Parking Charge Notice(s)</p>
         <div className="px-1">
-            <Notice active={active} setActive={setActive} paying_id="#53274633" paying_amount="90.00" issueDate="12/01/2022"/>
-            <Notice active={active} setActive={setActive} paying_id="#43727753" paying_amount="90.00" issueDate="09/21/2022"/>
+            <Notice active={active} setActive={setActive} paying_id="#53274633" paying_amount={payAmount_string} issueDate="12/01/2022"/>
+            <Notice active={active} setActive={setActive} paying_id="#43727753" paying_amount={payAmount_string} issueDate="09/21/2022"/>
         </div>
       </div>
     </>

@@ -3,10 +3,16 @@ import { useNavigate } from "react-router-dom";
 import Step1 from "./Step1"; 
 import BasicButtons from "../components/Button";
 import { useAppSelector } from "../redux/hooks";
+import { useAppDispatch } from "../redux/hooks";
+import { payAmount_redux } from "../redux/slice/payReducer";
 
 const ParkingChargeNoticeResult = () => {
+  const dispatch = useAppDispatch();
   const [active, setActive] = useState<boolean>(false);
   const navigate = useNavigate();
+  const totalPayAmount = 90.00;
+  dispatch(payAmount_redux(Number(totalPayAmount)))
+  const payAmount = useAppSelector((state) => state.pay.payAmount_redux)
   const handlePayPage = () => {
     navigate("/result/violationpay");
   }; 
@@ -67,7 +73,7 @@ const ParkingChargeNoticeResult = () => {
         {active && (
           <div className="payNow w-full absolute h-auto pt-4 pb-2 flex bg-[#9ec5ff] justify-center pl-[320px]">
             <div className="text-[#091C62] pr-6 text-lg font-semibold pt-2">
-              Amount To Pay: $90.00
+              Amount To Pay: ${payAmount}
             </div>
             <div onClick={handlePayPage}>
               <BasicButtons
