@@ -46,7 +46,6 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     fetchData()
       .then(() => {
-        console.log("pdf success");
       })
       .catch((error) => console.error(error));
   }, []);

@@ -1,21 +1,49 @@
-import React, { useState } from "react";
-import Step1 from "./Step1";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Step1 from "./Step1"; 
 import BasicButtons from "../components/Button";
-
+import { useAppSelector } from "../redux/hooks";
 
 const ParkingChargeNoticeResult = () => {
   const [active, setActive] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const handlePayPage = () => {
+    navigate("/result/violationpay");
+  }; 
+  const handleHome = () => {
+    navigate('/')
+  };
+  const licensePlateNumber = useAppSelector(
+    (state) => state.pay.licensePlateNumber
+  );
+  const parkingChargeNumber_redux = useAppSelector(
+    (state) => state.pay.parkingChargeNumber_redux
+  );
+  const stateLocation_redux = useAppSelector(
+    (state) => state.pay.stateLocation_redux
+  );
+
+  useEffect(() => {
+    if (parkingChargeNumber_redux==="DX-101" && (licensePlateNumber==="ABCD12" && stateLocation_redux==="Florida")){
+      navigate('/')
+    }
+    else if (parkingChargeNumber_redux || (licensePlateNumber && stateLocation_redux)) {
+      navigate("/result");
+    }
+  }, [])
+ 
+  
 
   return (
     <>
       <div className="w-screen h-[1720px] bg-[#EFF3FF]">
-        <a href="/" className="absolute top-[10px] left-[40px]">
+        <div onClick={handleHome} className="absolute top-[10px] left-[40px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"
             alt="logo"
             className="h-[80px] w-auto "
           ></img>
-        </a>
+        </div>
         <div className="flex overflow-hidden bg-[#FFF5F3] h-[100px] justify-center items-center text-[#091C62] border-b-2 border-[#FA551D]">
           <a
             className="active text-center py-8 px-6 text-2xl hover:bg-[#FA551D] hover:text-white hover:duration-300"
@@ -41,7 +69,7 @@ const ParkingChargeNoticeResult = () => {
             <div className="text-[#091C62] pr-6 text-lg font-semibold pt-2">
               Amount To Pay: $90.00
             </div>
-            <a href="/result/violationpay">
+            <div onClick={handlePayPage}>
               <BasicButtons
                 text="Pay Now"
                 width="auto"
@@ -51,7 +79,7 @@ const ParkingChargeNoticeResult = () => {
                 hoverColor="#FFAD92"
                 fontSize="16px"
               />
-            </a>
+            </div>
           </div>
         )}
         <div className="flex justify-center py-20">

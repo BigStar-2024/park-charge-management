@@ -10,7 +10,6 @@ import { licensePlateNumber } from "../redux/slice/payReducer";
 import { stateLocation_redux } from "../redux/slice/payReducer";
 import { parkingChargeNumber_redux } from "../redux/slice/payReducer";
 
-
 const Home = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -18,7 +17,10 @@ const Home = () => {
   const [plateNumber, setPlateNumber] = useState("");
   const [stateLocation, setStateLocation] = useState("");
   const [VIN, setVIN] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); 
+  const handleHome = () => {
+    navigate('/')
+  }
 
   const handleContinue = () => {
     if (parkingChargeNumber || (plateNumber && stateLocation)) {
@@ -31,13 +33,13 @@ const Home = () => {
   return (
     <>
       <div className=" w-screen h-auto bg-[#EFF3FF]">
-        <a href="/" className="absolute top-[10px] left-[40px]">
+        <div onClick={handleHome} className="absolute top-[10px] left-[40px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"
             alt="logo"
             className="h-[80px] w-auto "
           ></img>
-        </a>
+        </div>
         <div className="flex overflow-hidden bg-[#FFF5F3] h-[100px] justify-center items-center text-[#091C62] border-b-2 border-[#FA551D]">
           <a
             className="active text-center py-8 px-6 text-2xl bg-[#FA551D] text-white"
@@ -80,7 +82,7 @@ const Home = () => {
                           placeholder="Charge Notice Number"
                           value={parkingChargeNumber}
                           onChange={(value) => {
-                            setParkingChargeNumber(value);
+                            setParkingChargeNumber(value.toUpperCase());
                             dispatch(parkingChargeNumber_redux(String(value)));
                           }}
                         />
@@ -119,7 +121,7 @@ const Home = () => {
                           placeholder="License Plate"
                           value={plateNumber}
                           onChange={(value) => {
-                            setPlateNumber(value);
+                            setPlateNumber(value.toUpperCase());
                             dispatch(licensePlateNumber(String(value)));
                           }}
                         />
@@ -152,7 +154,11 @@ const Home = () => {
                             fontSize="14px"
                           />
                         </div>
-                        <div>{error && <p className="text-red-500 mb-4">{error}</p>}</div>
+                        <div>
+                          {error && (
+                            <p className="text-red-500 mb-4">{error}</p>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -177,7 +183,7 @@ const Home = () => {
                           placeholder="VIN Number"
                           value={VIN}
                           onChange={(value) => {
-                            setVIN(value);
+                            setVIN(value.toUpperCase());
                           }}
                         />
                       </div>
