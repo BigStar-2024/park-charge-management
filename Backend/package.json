@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-server": "nodemon server.js"
+    "start": "nodemon server.js",
+    "prestart": "start mongod --dbpath ./db"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +20,9 @@
     "nodemailer": "^6.9.13",
     "path": "^0.12.7",
     "stripe": "^15.4.0"
+  },
+  "dependencies": {
+    "mongoose": "^8.3.3",
+    "nodemon": "^3.1.0"
   }
 }

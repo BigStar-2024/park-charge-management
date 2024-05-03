@@ -4,7 +4,8 @@ import SelectIndicator from "../components/SelectState";
 import CustomizeInputText from "../components/CustomizeInputText";
 import "./index.css";
 import Stripe from "./Stripe";
-import { useAppSelector } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { firstName_redux, lastName_redux } from "../redux/slice/payReducer";
 
 interface props {
   active: boolean;
@@ -12,7 +13,7 @@ interface props {
 }
 
 const Step2 = ({ active, setActive }: props) => {
-
+  const dispatch = useAppDispatch();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -23,6 +24,7 @@ const Step2 = ({ active, setActive }: props) => {
   const [stateLocation, setStateLocation] = useState("");
   const payAmount = useAppSelector((state) => state.pay.payAmount_redux)
   const payAmount_string = String(payAmount)
+
 
   return (
     <>
@@ -69,6 +71,7 @@ const Step2 = ({ active, setActive }: props) => {
                       value={firstName}
                       onChange={(value) => {
                         setFirstName(value);
+                        dispatch(firstName_redux(String(value)))
                       }}
                     />
                   </div>
@@ -84,6 +87,7 @@ const Step2 = ({ active, setActive }: props) => {
                       value={lastName}
                       onChange={(value) => {
                         setLastName(value);
+                        dispatch(lastName_redux(String(value)))
                       }}
                     />
                   </div>
@@ -179,7 +183,16 @@ const Step2 = ({ active, setActive }: props) => {
                   </div>
                 </div>
                 <div className="my-4">
-                  <Stripe />
+                  <Stripe 
+                    firstName={firstName}
+                    lastName={lastName}
+                    address={address}
+                    address2={address2}
+                    city={city}
+                    zipcode={zipcode}
+                    phoneNumber={phoneNumber}
+                    stateLocation={stateLocation}
+                  />
                 </div>
               </div>
             </div>

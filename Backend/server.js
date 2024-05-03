@@ -10,6 +10,9 @@ const service_email = "aadsf7463@gmail.com"
 const security_key = "hgbntpivrfgotxbv"
 // This is your test secret API key.
 const stripe = require("stripe")('sk_test_51P2lpQC9Zd6I2Ms1GvOYwHZUIGfQFbny1XJBEdABFVaLlko3erp8Zk5brxb7dHQJj45Hl0kVb3ddFb56nRdEHfwK00XRDvuqaN');
+const mongoURI = require('./config').mongoURI;
+const PaymentModel = require('./models/payment');
+const mongoose = require('mongoose');
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -171,7 +174,42 @@ app.post('/send-email', async (req, res) => {
 
   res.status(201).json({ message: 'User created successfully' });
 });
+
+app.post('/save_paymentdata', upload.none(), async (req, res) => {
+  console.log("formData::", req.body.paymentData)
+  console.log("formData::", req.body.paymentEmail)
+  const data_obj = JSON.parse(req.body.paymentData);
+  const email = req.body.paymentEmail;
+  
+  // Add the email to the data_obj.data object
+  data_obj.data.email = email;
+  console.log(data_obj.data);
+
+  const newData = new PaymentModel({
+    email: data_obj.data.email,
+    firstName: data_obj.data.firstName,
+    lastName: data_obj.data.lastName,
+    address: data_obj.data.address,
+    address2: data_obj.data.address2,
+    city: data_obj.data.city,
+    state: data_obj.data.stateLocation,
+    zipCode: data_obj.data.zipcode,
+    phoneNumber: data_obj.data.phoneNumber,
+  })
+
+  newData.save();
+
+  res.send('okay')
+})
 // ---------------------------------------------------------------------
+
+mongoose.connect(mongoURI)
+  .then(() => {
+    console.log("MongoDB is connected.")
+  })
+  .catch((error) => {
+    console.error(error);
+  })
 
 
 app.listen(4242, () => console.log("Node server listening on port 4242!"));

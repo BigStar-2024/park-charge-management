@@ -12,7 +12,7 @@ import { useAppSelector } from "../redux/hooks";
 // This is your test publishable API key.
 const stripePromise = loadStripe("pk_test_51P2lpQC9Zd6I2Ms1GoO6Yk32LekVgzJldgAwfLNHZd8sx6B3BF3pmZgLC5FbXB6Q98iihfn0V7v36W3daHy3NZ2q00ibIvyS1N");
 
-export default function Stripe() {
+export default function Stripe(props) {
   const [clientSecret, setClientSecret] = useState("");
   const totalPayAmount = useAppSelector((state) => state.pay.payAmount_redux)
   console.log('dafe', totalPayAmount)
@@ -44,7 +44,7 @@ export default function Stripe() {
     <div className="App">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm data={props} />
         </Elements>
       )}
     </div>

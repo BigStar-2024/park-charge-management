@@ -10,7 +10,7 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm() {
+export default function CheckoutForm(props) {
   const stripe = useStripe();
   const elements = useElements();
   const paying_id = "53274633"
@@ -22,7 +22,8 @@ export default function CheckoutForm() {
 
   const [pdfDoc, setPDFDoc] = useState(null);
   const payAmount = useAppSelector((state) => state.pay.payAmount_redux)
-
+  const firstName = useAppSelector((state) => state.pay.firstName_redux)
+  const lastName = useAppSelector((state) => state.pay.lastName_redux)
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -138,10 +139,21 @@ export default function CheckoutForm() {
     }
   }
 
+  const savePaymentData = () => {
+    const paymentData = new FormData();
+    paymentData.append("paymentData", JSON.stringify(props));
+    paymentData.append("paymentEmail", email);
+    fetch(`http://88.99.90.19:4242/save_paymentdata`, {
+      method: 'POST',
+      body: paymentData
+    })
+  }
+
   const nodemailer = async () => {
 
-    const htmlcontent = `<h2>James William,</h2><h2>You successfully paid the following parking charge notice:${paying_id}</h2><h2>A receipt has been attached for your records.</h2><h2>Thank you</h2>`
+    const htmlcontent = `<h2>${firstName} ${lastName},</h2><h2>You successfully paid the following parking charge notice:${paying_id}</h2><h2>A receipt has been attached for your records.</h2><h2>Thank you</h2>`
     savePDFDocument();
+    savePaymentData();
     try {
       let response = await fetch("http://88.99.90.19:4242/send-email", {
         method: "POST",
