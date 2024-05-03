@@ -6,6 +6,8 @@ import BasicButtons from "../components/Button";
 import SelectIndicator from "../components/SelectState";
 import { useAppDispatch } from "../redux/hooks";
 import { licensePlateNumber} from "../redux/slice/payReducer";
+import { parkingChargeNumber_redux } from "../redux/slice/payReducer";
+import { stateLocation_redux } from "../redux/slice/payReducer";
 
 
 const First = () => {
@@ -15,6 +17,9 @@ const First = () => {
   const [plateNumber, setPlateNumber] = useState("");
   const [stateLocation, setStateLocation] = useState("");
   const [error, setError] = useState("");
+  const handleHome = () => {
+    navigate('/')
+  }
 
   const handleContinue = () => {
     if (parkingChargeNumber || (plateNumber && stateLocation)) {
@@ -30,13 +35,13 @@ const First = () => {
         <div className="w-screen h-screen bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-indigo-500 to-90% opacity-20"></div>
       </div>
       <div className="-translate-x-2/4 -translate-y-1/2 absolute inset-y-1/2 inset-x-1/2 w-[450px] max-w-[450px] h-fit bg-white rounded-[5px]">
-        <a href="/" className="absolute top-[20px] left-[20px]">
+        <div onClick={handleHome} className="absolute top-[20px] left-[20px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"
             alt="logo"
             className="h-[60px] w-auto"
           ></img>
-        </a>
+        </div>
         <div className="flex justify-center items-center mt-10 mb-6">
           <div className="flex flex-col ml-3 text-center">
             <p className="text-[#415467] text-2xl font-bold">PROFESSIONAL</p>
@@ -55,7 +60,8 @@ const First = () => {
                 width="316px"
                 label="Parking Charge Number"
                 value={parkingChargeNumber}
-                onChange={(value) => {setParkingChargeNumber(value);
+                onChange={(value) => {setParkingChargeNumber(value.toUpperCase());
+                  dispatch(parkingChargeNumber_redux(String(value)));
                 }}
               />
             </div>
@@ -72,7 +78,7 @@ const First = () => {
                   width="180px"
                   label="Plate Number"
                   value={plateNumber}
-                  onChange={(value) => {setPlateNumber(value);
+                  onChange={(value) => {setPlateNumber(value.toUpperCase());
                     dispatch(licensePlateNumber(String(value)));
                   }}
                 />
@@ -84,7 +90,9 @@ const First = () => {
                   height="54px"
                   fontSize="16px"
                   value={stateLocation}
-                  onChange={(e:any, value: string) => { setStateLocation(value) }}
+                  onChange={(e:any, value: string) => { setStateLocation(value);
+                    dispatch(stateLocation_redux(String(value)));
+                   }}
                 />
               </div>
             </div>

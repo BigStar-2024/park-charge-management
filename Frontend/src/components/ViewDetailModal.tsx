@@ -6,6 +6,7 @@ import closeBtn from "./assets/Closebtn.svg";
 import BasicButtons from "./Button";
 import { PDFDocument } from "pdf-lib";
 import { BASE_URL } from "../config";
+import { Navigate, useNavigate } from "react-router-dom";
 
 type ModalProps = {
   isOpen: boolean;
@@ -13,6 +14,7 @@ type ModalProps = {
 };
 
 const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+  const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pdfDoc, setPDFDoc] = useState<PDFDocument | null>(null);
   const licensePlateNumber = useAppSelector(
@@ -25,6 +27,9 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const handlePayPage = () => {
+    navigate('/violationpay')
+  }
 
   const fetchData = async () => {
     try {
@@ -46,7 +51,6 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     fetchData()
       .then(() => {
-        console.log("pdf success");
       })
       .catch((error) => console.error(error));
   }, []);
@@ -274,7 +278,7 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 fontSize="16px"
               />
             </div>
-            <a href="/result/violationpay" className="mb-4 mx-4">
+            <div className="mb-4 mx-4" onClick={handlePayPage}>
               <BasicButtons
                 text="Pay"
                 width="100px"
@@ -284,7 +288,7 @@ const ViewDetailModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 hoverColor="#FFAD92"
                 fontSize="16px"
               />
-            </a>
+            </div>
           </div>
         </div>
       </div>

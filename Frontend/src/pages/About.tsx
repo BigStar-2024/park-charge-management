@@ -1,16 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
+  const handleHome = () => {
+    navigate('/')
+  }
   return (
     <>
       <div className=" w-screen h-screen bg-[#EFF3FF]">
-        <a href="/" className="absolute top-[10px] left-[40px]">
+        <div onClick={handleHome} className="absolute top-[10px] left-[40px]">
           <img
             src="https://i.ibb.co/HBQk2wd/logo.png"
             alt="logo"
             className="h-[80px] w-auto "
           ></img>
-        </a>
+        </div>
         <div className="flex overflow-hidden bg-[#FFF5F3] h-[100px] justify-center items-center text-[#091C62] border-b-2 border-[#FA551D]">
           <a
             className="active text-center py-8 px-6 text-2xl hover:bg-[#FFAD92] hover:text-white hover:duration-300"
