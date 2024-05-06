@@ -5,10 +5,10 @@ import StateTextFields from "../components/InputText";
 import BasicButtons from "../components/Button";
 import SelectIndicator from "../components/SelectState";
 import { useAppDispatch } from "../redux/hooks";
-import { licensePlateNumber} from "../redux/slice/payReducer";
+import { licensePlateNumber } from "../redux/slice/payReducer";
 import { parkingChargeNumber_redux } from "../redux/slice/payReducer";
 import { stateLocation_redux } from "../redux/slice/payReducer";
-
+import { BASE_URL } from "../config";
 
 const First = () => {
   const dispatch = useAppDispatch();
@@ -18,11 +18,20 @@ const First = () => {
   const [stateLocation, setStateLocation] = useState("");
   const [error, setError] = useState("");
   const handleHome = () => {
-    navigate('/')
-  }
+    navigate("/");
+  };
 
   const handleContinue = () => {
     if (parkingChargeNumber || (plateNumber && stateLocation)) {
+      fetch(`${BASE_URL}/set-license`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          plateNumber: plateNumber,
+        }),
+      });
       navigate("/result");
     } else {
       setError("Please enter the required information.");
@@ -60,7 +69,8 @@ const First = () => {
                 width="316px"
                 label="Parking Charge Number"
                 value={parkingChargeNumber}
-                onChange={(value) => {setParkingChargeNumber(value.toUpperCase());
+                onChange={(value) => {
+                  setParkingChargeNumber(value.toUpperCase());
                   dispatch(parkingChargeNumber_redux(String(value)));
                 }}
               />
@@ -78,7 +88,8 @@ const First = () => {
                   width="180px"
                   label="Plate Number"
                   value={plateNumber}
-                  onChange={(value) => {setPlateNumber(value.toUpperCase());
+                  onChange={(value) => {
+                    setPlateNumber(value.toUpperCase());
                     dispatch(licensePlateNumber(String(value)));
                   }}
                 />
@@ -90,9 +101,10 @@ const First = () => {
                   height="54px"
                   fontSize="16px"
                   value={stateLocation}
-                  onChange={(e:any, value: string) => { setStateLocation(value);
+                  onChange={(e: any, value: string) => {
+                    setStateLocation(value);
                     dispatch(stateLocation_redux(String(value)));
-                   }}
+                  }}
                 />
               </div>
             </div>

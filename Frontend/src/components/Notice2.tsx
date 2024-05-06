@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ViewDetailModal2 from "./ViewDetailModal2";
 import { useAppSelector } from "../redux/hooks";
+import { BASE_URL } from "../config";
 
 interface props {
   paying_id: string;
@@ -13,9 +14,15 @@ const Notice2 = ({
   paying_amount,
   issueDate,
 }: props) => {
-  const licensePlateNumber = useAppSelector(
-    (state) => state.pay.licensePlateNumber
-  );
+  const [licensePlateNumber, setLicensePlateNumber] = useState("");
+  useEffect(() => {
+    fetch(`${BASE_URL}/get-license`, {
+      method: "GET"
+    }).then((response) => response.json())
+      .then((data) => {
+        setLicensePlateNumber(data);
+      })
+  }, [])
   console.log(licensePlateNumber);
   
   

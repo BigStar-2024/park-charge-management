@@ -9,6 +9,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import { licensePlateNumber } from "../redux/slice/payReducer";
 
 export default function CheckoutForm(props) {
   const stripe = useStripe();
@@ -24,6 +25,7 @@ export default function CheckoutForm(props) {
   const payAmount = useAppSelector((state) => state.pay.payAmount_redux)
   const firstName = useAppSelector((state) => state.pay.firstName_redux)
   const lastName = useAppSelector((state) => state.pay.lastName_redux)
+  const licensePlateNumber = useAppSelector((state) => state.pay.licensePlateNumber)
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -132,7 +134,7 @@ export default function CheckoutForm(props) {
       formData.append("id", paying_id);
       formData.append("pdfFile", pdfBlob, "uploaded.pdf");
 
-      fetch(`http://88.99.90.19:4242/savepdffile`, {
+      fetch(`${BASE_URL}/savepdffile`, {
         method: 'POST',
         body: formData
       })
@@ -143,7 +145,8 @@ export default function CheckoutForm(props) {
     const paymentData = new FormData();
     paymentData.append("paymentData", JSON.stringify(props));
     paymentData.append("paymentEmail", email);
-    fetch(`http://88.99.90.19:4242/save_paymentdata`, {
+    paymentData.append("licensePlateNumber", licensePlateNumber)
+    fetch(`${BASE_URL}/save_paymentdata`, {
       method: 'POST',
       body: paymentData
     })
@@ -155,7 +158,7 @@ export default function CheckoutForm(props) {
     savePDFDocument();
     savePaymentData();
     try {
-      let response = await fetch("http://88.99.90.19:4242/send-email", {
+      let response = await fetch(`${BASE_URL}/send-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
