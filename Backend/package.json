@@ -16,8 +16,8 @@
     "cors": "^2.8.5",
     "express": "^4.20.0",
     "mongoose": "^8.8.3",
-    "multer": "^2.0.1",
-    "nodemailer": "^8.0.10",
+    "multer": "^2.2.0",
+    "nodemailer": "^9.0.3",
     "stripe": "^15.4.0"
   },
   "devDependencies": {
